@@ -40,11 +40,11 @@
 
         <div class="row two">
           <div>
-            <label>Teléfono (con país, ej. +1…)*</label>
+            <label>Teléfono*</label>
             <input name="phone" placeholder="+1 305 123 4567" required />
           </div>
           <div>
-            <label>Empresa / Concesionario</label>
+            <label>Empresa / Dealer</label>
             <input name="company" />
           </div>
         </div>
@@ -74,21 +74,25 @@
               <option value="100plus">100+ /día</option>
             </select>
           </div>
+          /*
           <div>
+            
             <label>¿Quieren SMS de seguimiento?</label>
             <select name="wants_sms">
               <option>Sí</option>
               <option>No</option>
             </select>
+            
           </div>
+          */
         </div>
-
+        /*
         <label>URL del Google Sheet de inventario (opcional)</label>
         <input name="inventory_sheet" placeholder="https://docs.google.com/spreadsheets/..." />
 
         <label>CRM actual (opcional)</label>
         <input name="crm" placeholder="DealerSocket, VinSolutions, etc." />
-
+        */
         <label>Objetivo del piloto / notas</label>
         <textarea name="notes" placeholder="Cuéntanos qué esperas del piloto en 7 días."></textarea>
 
@@ -101,7 +105,7 @@
         <div class="msg" id="statusMsg"></div>
       </form>
     </div>
-    <p style="margin-top:14px">¿Prefieres una llamada? <a href="https://calendly.com/tworoadsvoice/demo" target="_blank">Agenda con ventas</a>.</p>
+    <p style="margin-top:14px">¿Prefieres una llamada para aclarar dudas? <a href="https://calendly.com/tworoadsvoice/demo" target="_blank">Agenda con ventas</a>.</p>
   </div>
 
 <script>

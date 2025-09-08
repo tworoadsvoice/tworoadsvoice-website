@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Piloto 7 días — Two Roads Voice</title>
+  <link rel="icon" href="/favicon.svg">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:#0B0F19;color:#E6E8F0;margin:0}
+    .wrap{max-width:880px;margin:0 auto;padding:40px 16px}
+    h1{margin:0 0 8px}
+    .card{background:#121728;border:1px solid #1e2843;border-radius:14px;padding:24px}
+    label{display:block;margin:14px 0 6px;font-size:14px;color:#9FB0D9}
+    input,select,textarea{width:100%;padding:12px 14px;background:#0b1223;border:1px solid #1d2a4a;color:#e6e8f0;border-radius:10px;outline:none}
+    textarea{min-height:110px}
+    .row{display:grid;gap:12px}
+    @media(min-width:720px){.row.two{grid-template-columns:1fr 1fr}}
+    button{margin-top:18px;background:#4F7EFF;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .msg{margin-top:12px;font-size:14px}
+    a{color:#8ab4ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Piloto gratuito de 7 días</h1>
+    <p>Completa el cuestionario y te respondemos en menos de 24 horas con tu agente listo para probar.</p>
+
+    <div class="card">
+      <form id="pilotForm">
+        <div class="row two">
+          <div>
+            <label>Nombre completo*</label>
+            <input name="full_name" required />
+          </div>
+          <div>
+            <label>Email de contacto*</label>
+            <input name="email" type="email" required />
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label>Teléfono (con país, ej. +1…)*</label>
+            <input name="phone" placeholder="+1 305 123 4567" required />
+          </div>
+          <div>
+            <label>Empresa / Concesionario</label>
+            <input name="company" />
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label>Idioma(s) de atención*</label>
+            <select name="languages" required>
+              <option value="ES">Español</option>
+              <option value="EN">Inglés</option>
+              <option value="Bilingual">Bilingüe (ES/EN)</option>
+            </select>
+          </div>
+          <div>
+            <label>Horario de atención (zona horaria)</label>
+            <input name="hours" placeholder="L–V 9–6pm (EST)" />
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label>Volumen de llamadas estimado</label>
+            <select name="call_volume">
+              <option value="under-20">Menos de 20/día</option>
+              <option value="20-50">20–50/día</option>
+              <option value="50-100">50–100/día</option>
+              <option value="100plus">100+ /día</option>
+            </select>
+          </div>
+          <div>
+            <label>¿Quieren SMS de seguimiento?</label>
+            <select name="wants_sms">
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <label>URL del Google Sheet de inventario (opcional)</label>
+        <input name="inventory_sheet" placeholder="https://docs.google.com/spreadsheets/..." />
+
+        <label>CRM actual (opcional)</label>
+        <input name="crm" placeholder="DealerSocket, VinSolutions, etc." />
+
+        <label>Objetivo del piloto / notas</label>
+        <textarea name="notes" placeholder="Cuéntanos qué esperas del piloto en 7 días."></textarea>
+
+        <label>
+          <input type="checkbox" id="consent" required />
+          Acepto el uso de mis datos para contactarme y crear el piloto de 7 días.
+        </label>
+
+        <button type="submit">Enviar solicitud</button>
+        <div class="msg" id="statusMsg"></div>
+      </form>
+    </div>
+    <p style="margin-top:14px">¿Prefieres una llamada? <a href="https://calendly.com/tworoadsvoice/demo" target="_blank">Agenda con ventas</a>.</p>
+  </div>
+
+<script>
+const form = document.getElementById('pilotForm');
+const msg  = document.getElementById('statusMsg');
+
+// ✳️ Pon tu webhook (n8n o Formspree)
+const ENDPOINT = 'https://tworoads.app.n8n.cloud/webhook/87397984-0033-490e-955a-600f1378afa3';
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  msg.textContent = 'Enviando…';
+
+  // Recolectar datos
+  const data = Object.fromEntries(new FormData(form));
+  data.source = 'website-pilot';
+  data.timestamp = new Date().toISOString();
+
+  try {
+    // fetch normal (si CORS está abierto)
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    msg.textContent = '¡Listo! Te escribimos en breve con tu agente de prueba.';
+    form.reset();
+  } catch (err) {
+    // fallback silente si tu endpoint bloquea CORS (n8n a veces lo permite)
+    try {
+      await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+      msg.textContent = '¡Listo! Te escribimos en breve con tu agente de prueba.';
+      form.reset();
+    } catch (e2) {
+      console.error(err, e2);
+      msg.textContent = 'Ups, no pudimos enviar. Escríbenos a hola@tworoadsvoice.com';
+    }
+  }
+});
+</script>
+</body>
+</html>

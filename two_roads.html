@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Two Roads Voice — Recepcionista bilingüe para dealers</title>
+  <meta name="description" content="Recepcionista de voz bilingüe (ES/EN) para concesionarios: atiende llamadas, verifica inventario, agenda test-drives y envía SMS de confirmación."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--brand:#0ea5e9;--brand-dark:#0284c7;}
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+    .glass { background: rgba(255,255,255,.06); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.09); }
+    .badge { border:1px solid rgba(255,255,255,.15); }
+  </style>
+</head>
+<body class="bg-slate-950 text-white">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur border-b border-white/10">
+    <nav class="mx-auto max-w-7xl flex items-center justify-between px-4 py-3">
+      <a href="#" class="flex items-center gap-3">
+        <!-- Simple logomark (two roads) -->
+        <svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M6 40c5-10 11-16 18-20 7-4 12-6 18-8" stroke="url(#g1)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M6 8c6 2 11 4 18 8 7 4 13 10 18 20" stroke="url(#g2)" stroke-width="5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="g1" x1="6" x2="42" y1="40" y2="12" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#22d3ee"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="6" x2="42" y1="8" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#22d3ee"/><stop offset="1" stop-color="#0ea5e9"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="text-xl font-bold tracking-tight">Two Roads Voice</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#features" class="text-white/80 hover:text-white">Funciones</a>
+        <a href="#pricing" class="text-white/80 hover:text-white">Precios</a>
+        <a href="#faq" class="text-white/80 hover:text-white">FAQ</a>
+        <button id="langBtn" class="px-3 py-1.5 rounded-md border border-white/15 text-sm hover:bg-white/5">EN</button>
+        <a href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium">Agendar demo</a>
+      </div>
+
+      <button class="md:hidden px-3 py-2 rounded-md border border-white/15" onclick="document.getElementById('mnav').classList.toggle('hidden')">☰</button>
+    </nav>
+    <div id="mnav" class="md:hidden hidden px-4 pb-4 space-y-3">
+      <a href="#features" class="block text-white/90">Funciones</a>
+      <a href="#pricing" class="block text-white/90">Precios</a>
+      <a href="#faq" class="block text-white/90">FAQ</a>
+      <div class="flex gap-3">
+        <button id="langBtnM" class="px-3 py-1.5 rounded-md border border-white/15 text-sm">EN</button>
+        <a href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium">Agendar demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-900/40 via-slate-900 to-slate-950"></div>
+    <div class="mx-auto max-w-7xl relative px-4 pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 badge px-2.5 py-1 rounded-full text-xs text-white/80">
+          <span>IA de voz tiempo real</span><span class="text-white/30">•</span><span>Bilingüe ES/EN</span>
+        </div>
+        <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold leading-tight">
+          Recepcionista bilingüe para dealers:
+          <span class="text-sky-400">atiende, verifica inventario y agenda test-drives.</span>
+        </h1>
+        <p class="mt-5 text-lg text-white/80 max-w-2xl">
+          Two Roads Voice conecta llamadas con tu inventario en vivo y envía SMS de confirmación. Sonido natural, procesos repetibles, más citas agendadas.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#demo" class="px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold">Agendar demo</a>
+          <a href="#pricing" class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-md font-semibold border border-white/10">Probar con piloto</a>
+        </div>
+        <div class="mt-6 text-sm text-white/60">
+          En minutos: redirige tu número, comparte tu sheet de inventario y listo.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FEATURES -->
+  <section id="features" class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold">Lo que hace por ti</h2>
+    <p class="text-white/70 mt-2">Todo lo esencial para convertir llamadas en citas reales.</p>
+
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <!-- Card -->
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Bilingüe ES/EN</h3>
+        <p class="text-white/70 mt-2">Detecta idioma y responde natural: español o inglés sin esfuerzo.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Inventario en vivo</h3>
+        <p class="text-white/70 mt-2">Conecta un Google Sheet o tu CRM. Busca por marca, modelo, año y disponibilidad.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Agenda + SMS</h3>
+        <p class="text-white/70 mt-2">Confirma la cita, normaliza el teléfono a E.164 y envía recordatorios automáticos.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Voz humana</h3>
+        <p class="text-white/70 mt-2">Voces naturales y consistentes. Humor ligero, siempre profesional.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Antiduplicados</h3>
+        <p class="text-white/70 mt-2">Evita leads repetidos y citas dobles con reglas simples.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold text-lg">Reportes simples</h3>
+        <p class="text-white/70 mt-2">Leads válidos, citas, entregabilidad SMS y escuchas QA semanales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold">Cómo funciona</h2>
+    <div class="mt-8 grid md:grid-cols-3 gap-6">
+      <div class="glass rounded-xl p-6">
+        <div class="text-sky-400 font-bold">01</div>
+        <h3 class="font-semibold mt-2">Onboarding express</h3>
+        <p class="text-white/70 mt-1">Redirige tu número y comparte tu inventario (sheet). 30–60 min.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <div class="text-sky-400 font-bold">02</div>
+        <h3 class="font-semibold mt-2">Pilot 14 días</h3>
+        <p class="text-white/70 mt-1">Medimos citas, conexión y entrega SMS. Sin riesgos ni permanencias.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <div class="text-sky-400 font-bold">03</div>
+        <h3 class="font-semibold mt-2">Escala mensual</h3>
+        <p class="text-white/70 mt-1">Pásate a Starter/Pro cuando cumplamos métricas. Listo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="mx-auto max-w-7xl px-4 py-16">
+    <div class="glass rounded-2xl p-6 md:p-10">
+      <div class="md:flex items-center justify-between gap-8">
+        <div class="md:w-1/2">
+          <h2 class="text-3xl font-bold">Agenda una demo</h2>
+          <p class="text-white/70 mt-2">Te mostramos la voz en vivo, el flujo de citas y cómo conectamos tu inventario.</p>
+          <div class="mt-6 flex gap-3">
+            <!-- TODO: cambia por tu Calendly -->
+            <a href="https://calendly.com/" target="_blank" class="px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold">Agendar en Calendly</a>
+            <!-- TODO: cambia email -->
+            <a href="mailto:hola@tworoadsvoice.com" class="px-5 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-md font-semibold">Escríbenos</a>
+          </div>
+          <p class="text-white/50 text-xs mt-4">Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.</p>
+        </div>
+        <div class="md:w-1/2 mt-8 md:mt-0">
+          <!-- Placeholder video -->
+          <div class="aspect-video rounded-xl overflow-hidden border border-white/10">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold">Planes simples</h2>
+    <p class="text-white/70 mt-2">Empieza con un piloto sin riesgo; escala cuando veas resultados.</p>
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <div class="glass rounded-2xl p-6">
+        <div class="text-sm text-white/70">Piloto</div>
+        <div class="mt-2 text-3xl font-extrabold">$0–299</div>
+        <div class="text-white/60 text-sm">14 días o 100 llamadas</div>
+        <ul class="mt-4 space-y-2 text-white/80 text-sm">
+          <li>• Recepción bilingüe + inventario + agenda</li>
+          <li>• SMS confirmación y recordatorio</li>
+          <li>• Reporte final con métricas</li>
+        </ul>
+        <a href="#demo" class="inline-block mt-6 px-4 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10">Empezar piloto</a>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-sky-500/40">
+        <div class="text-sm text-white/70">Starter</div>
+        <div class="mt-2 text-3xl font-extrabold">$499<span class="text-base font-bold text-white/60">/mes</span></div>
+        <ul class="mt-4 space-y-2 text-white/80 text-sm">
+          <li>• 1 línea, horario extendido</li>
+          <li>• 2 recordatorios SMS por cita</li>
+          <li>• QA mensual y soporte</li>
+        </ul>
+        <a href="#demo" class="inline-block mt-6 px-4 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10">Hablar con ventas</a>
+      </div>
+
+      <div class="glass rounded-2xl p-6">
+        <div class="text-sm text-white/70">Pro</div>
+        <div class="mt-2 text-3xl font-extrabold">$999<span class="text-base font-bold text-white/60">/mes</span></div>
+        <ul class="mt-4 space-y-2 text-white/80 text-sm">
+          <li>• 2–3 líneas, 24/7</li>
+          <li>• Integración CRM (HubSpot/Airtable)</li>
+          <li>• Reporte semanal + QA</li>
+        </ul>
+        <a href="#demo" class="inline-block mt-6 px-4 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10">Hablar con ventas</a>
+      </div>
+    </div>
+    <p class="text-white/40 text-xs mt-6">* Costos de telefonía/transcripción/voz se pasan al costo o se incluyen según volumen. Podemos usar tu Twilio.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="mx-auto max-w-7xl px-4 py-16">
+    <h2 class="text-3xl font-bold">Preguntas frecuentes</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">¿Cómo conectan el inventario?</h3>
+        <p class="text-white/70 mt-2">Con un Google Sheet estandarizado (marca, modelo, año, precio, disponibilidad). Luego podemos pasar a tu CRM.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">¿Qué tan natural suena?</h3>
+        <p class="text-white/70 mt-2">Voz clara y cálida, con humor ligero cuando corresponde; sin sonar robótico. Auditoría de calidad semanal.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">¿Y si el cliente habla inglés?</h3>
+        <p class="text-white/70 mt-2">Detectamos idioma automáticamente y seguimos en ES o EN sin fricción.</p>
+      </div>
+      <div class="glass rounded-xl p-6">
+        <h3 class="font-semibold">¿Qué incluye el piloto?</h3>
+        <p class="text-white/70 mt-2">14 días o 100 llamadas, recepción bilingüe, agenda y SMS, métricas claras. Si funciona, escalamos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="font-bold text-lg">Two Roads Voice</div>
+        <p class="text-white/60 mt-2 text-sm">Recepcionista de voz bilingüe para concesionarios. Más citas, menos fricción.</p>
+      </div>
+      <div class="md:text-right">
+        <!-- TODO: cambia email -->
+        <a href="mailto:hola@tworoadsvoice.com" class="text-white/80 hover:text-white">hola@tworoadsvoice.com</a>
+        <div class="text-white/40 text-xs mt-2">©   <a href="/privacy.html">Política de Privacidad</a>
+        <span>·</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple i18n toggle for hero headings/buttons only (keep page mostly ES) -->
+  <script>
+    const t = {
+      en: {
+        heroTitle: "Bilingual voice receptionist for dealers:",
+        heroSpan: "answers, checks inventory and books test-drives.",
+        heroCTA1: "Book a demo",
+        heroCTA2: "Start pilot",
+        navDemo: "Book a demo",
+        navFeatures: "Features",
+        navPricing: "Pricing",
+        navFAQ: "FAQ",
+      },
+      es: {
+        heroTitle: "Recepcionista bilingüe para dealers:",
+        heroSpan: "atiende, verifica inventario y agenda test-drives.",
+        heroCTA1: "Agendar demo",
+        heroCTA2: "Probar con piloto",
+        navDemo: "Agendar demo",
+        navFeatures: "Funciones",
+        navPricing: "Precios",
+        navFAQ: "FAQ",
+      }
+    };
+
+    const y = document.getElementById('y'); y.textContent = new Date().getFullYear();
+
+    const langBtn = document.getElementById('langBtn');
+    const langBtnM = document.getElementById('langBtnM');
+    const el = {
+      title: document.querySelector('h1'),
+      titleSpan: document.querySelector('h1 span'),
+      cta1: document.querySelector('a[href="#demo"].px-5.py-3.bg-sky-500'),
+      cta2: document.querySelector('a[href="#pricing"].px-5.py-3'),
+      navDemo: document.querySelector('a[href="#demo"].px-4.py-2'),
+      navFeat: document.querySelector('a[href="#features"]'),
+      navPrice: document.querySelector('a[href="#pricing"]'),
+      navFaq: document.querySelector('a[href="#faq"]'),
+    };
+
+    function setLang(l){
+      const d=t[l];
+      el.title.childNodes[0].nodeValue = d.heroTitle + " ";
+      el.titleSpan.textContent = d.heroSpan;
+      el.cta1.textContent = d.heroCTA1;
+      el.cta2.textContent = d.heroCTA2;
+      el.navDemo.textContent = d.navDemo;
+      el.navFeat.textContent = d.navFeatures;
+      el.navPrice.textContent = d.navPricing;
+      el.navFaq.textContent = d.navFAQ;
+      langBtn.textContent = l === 'es' ? 'EN' : 'ES';
+      if(langBtnM) langBtnM.textContent = l === 'es' ? 'EN' : 'ES';
+      document.documentElement.lang = l;
+    }
+
+    let current = 'es'; setLang(current);
+    function toggleLang(){
+      current = current === 'es' ? 'en' : 'es';
+      setLang(current);
+    }
+    langBtn.addEventListener('click', toggleLang);
+    if(langBtnM) langBtnM.addEventListener('click', toggleLang);
+  </script>
+</body>
+</html>

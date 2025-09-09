@@ -181,63 +181,52 @@
   </section>
 
   <!-- DEMO -->
-  <section id="demo" class="mx-auto max-w-7xl px-4 py-16">
-    <div class="glass rounded-2xl p-6 md:p-10">
-      <div class="md:flex items-center justify-between gap-8">
-       <!-- <div class="md:w-1/2">
-  <h2 class="text-3xl font-bold">Agenda una llamada de consulta</h2>
-  <p class="text-white/70 mt-2">
-    Te mostramos la voz en vivo, el flujo de citas y cómo conectamos tu inventario.
-  </p>
--->
-  <!-- Dos opciones en tarjetas -->
-  <div class="grid sm:grid-cols-2 gap-4 mt-6">
-
-   <section id="demo" class="mx-auto max-w-7xl px-4 py-16">
+ <section id="demo" class="mx-auto max-w-7xl px-4 py-16">
   <div class="glass rounded-2xl p-6 md:p-10">
-    <div class="grid gap-8 md:grid-cols-2 items-start">
-      <!-- Columna IZQUIERDA: dos CTAs apilados -->
-      <div class="flex flex-col gap-4">
-        <!-- CTA 1: Llamada de consulta -->
-        <div class="rounded-md border border-white/10 bg-white/5 p-6">
-          <h2 class="text-3xl font-bold tracking-tight text-white">
-            Agenda una llamada de consulta
-          </h2>
-          <p class="text-white/70 mt-2">
+    <!-- GRID: izquierda (2 cards) / derecha (video) -->
+    <div class="grid gap-8 lg:grid-cols-2 items-start">
+      <!-- Izquierda: 2 tarjetas apiladas -->
+      <div class="space-y-6">
+        <!-- Card 1 -->
+        <div class="rounded-xl bg-white/5 backdrop-blur border border-white/10 p-6">
+          <h2 class="text-3xl font-bold text-white">Agenda una llamada de consulta</h2>
+          <p class="text-white/70 mt-3">
             Te mostramos la voz en vivo, el flujo de citas y cómo conectamos tu inventario.
           </p>
           <a
-            href="https://calendly.com/tworoadsvoice/30min" target="_blank" rel="noopener"
-            class="mt-4 inline-flex items-center px-4 py-2 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-200 transition"
+            href="https://calendly.com/tworoadsvoice/30min"
+            target="_blank"
+            class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold text-white"
           >
-            Abrir Calendly →
+            Abrir Calendly
           </a>
         </div>
 
-        <!-- CTA 2: Formulario / Agente gratis -->
-        <div class="rounded-md border border-white/10 bg-white/5 p-6">
-          <h2 class="text-3xl font-bold tracking-tight text-white">
-            Completa un formulario rápido y obtén un Agente de prueba gratis por 7 días
+        <!-- Card 2 -->
+        <div class="rounded-xl bg-white/5 backdrop-blur border border-white/10 p-6">
+          <h2 class="text-3xl font-bold text-white">
+            Completa un formulario y obtén un Agente de prueba gratis por 7 días
           </h2>
-          <p class="text-white/70 mt-2">
+          <p class="text-white/70 mt-3">
             Llénalo ahora y te enviamos tu agente en menos de 24 horas.
           </p>
           <a
             href="/pilot.html"
-            class="mt-4 inline-flex items-center px-4 py-2 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-200 transition"
+            class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-white/10 hover:bg-white/20 rounded-md font-semibold text-white"
           >
             Obtener Agente Gratis
           </a>
         </div>
 
-        <!-- Nota SMS -->
-        <p class="text-sm text-white/50 mt-1">
-          Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.
+        <!-- Aviso SMS (uno solo para ambas opciones) -->
+        <p class="text-white/50 text-sm">
+          Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía
+          <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.
         </p>
       </div>
 
-      <!-- Columna DERECHA: Video -->
-      <div class="rounded-xl overflow-hidden border border-white/10 shadow">
+      <!-- Derecha: Video -->
+      <div class="rounded-xl overflow-hidden border border-white/10">
         <div class="aspect-video">
           <iframe
             class="w-full h-full"
@@ -253,27 +242,6 @@
     </div>
   </div>
 </section>
-
-
-
-  </div>
-
-  <p class="text-white/50 text-xs mt-4">
-    Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.
-  </p>
-</div>
-
-        <div class="md:w-1/2 mt-8 md:mt-0">
-          <!-- Placeholder video -->
-          <div class="aspect-video rounded-xl overflow-hidden border border-white/10">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- PRICING -->
   <!--
@@ -425,6 +393,7 @@
   </script>
 </body>
 </html>
+
 
 
 

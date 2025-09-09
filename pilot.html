@@ -18,13 +18,22 @@
         background-color:#1a2635 !important;
         color: var(--ink);
       }
-      /* Nudge vertical muy sutil para centrar la cajita del check */
-    .consent input{
-      transform: translateY(5px);  /* prueba 1–2px según tu navegador */
-    }
-    
-    /* Si además quieres un poco más de aire respecto al textarea: */
-    .consent{ margin-top: 6px; }   /* opcional */
+      /* Da aire respecto al bloque anterior (el textarea) */
+.consent{
+  margin-top: 14px !important;     /* súbelo a 16–20px si quieres más */
+  display: flex;                    /* alinea caja + texto en una línea */
+  align-items: center;              /* centra verticalmente */
+  gap: 10px;                        /* separación entre caja y texto */
+}
+
+/* Evita “empujes” raros entre navegadores */
+.consent input[type="checkbox"]{
+  width: 18px;
+  height: 18px;
+  margin: 0;                        /* que no meta margen propio */
+  transform: none;                  /* quita el nudge anterior */
+}
+
 
     :root{
       --bg:#0b0f14; --panel:#0f1620; --ink:#eaf2ff; --sub:#a9b6c7;

@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Piloto gratuito de 7 días – Two Roads Voice</title>
   <style>
+        /* Activa controles nativos en modo oscuro (Chrome/Firefox/Safari) */
+      :root{ color-scheme: dark; }
+      
+      /* Fallback por si algún navegador no respeta lo anterior */
+      select, option, optgroup{
+        background-color: var(--input);
+        color: var(--ink);
+      }
+      option:checked,
+      option:hover{
+        background-color:#1a2635 !important;
+        color: var(--ink);
+      }
+      /* Nudge vertical muy sutil para centrar la cajita del check */
+    .consent input{
+      transform: translateY(1px);  /* prueba 1–2px según tu navegador */
+    }
+    
+    /* Si además quieres un poco más de aire respecto al textarea: */
+    .consent{ margin-top: 6px; }   /* opcional */
+
     :root{
       --bg:#0b0f14; --panel:#0f1620; --ink:#eaf2ff; --sub:#a9b6c7;
       --brand:#4f79ff; --brand-700:#3a5de0; --ok:#31c48d; --err:#ff6b6b;
@@ -32,7 +53,7 @@
     }
     /* 2 columnas por defecto; en móvil 1 col */
     .col-6{grid-column:span 6}
-    .col-12{grid-column:span 12; margin-top:40px;}
+    .col-12{grid-column:span 12;}
     @media (max-width: 760px){
       .col-6{grid-column:span 12}
     }

@@ -193,44 +193,67 @@
   <!-- Dos opciones en tarjetas -->
   <div class="grid sm:grid-cols-2 gap-4 mt-6">
 
-    <!-- Opción 1: Agendar llamada -->
-    <a href="https://calendly.com/tworoadsvoice/30min" target="_blank"
-       class="block rounded-md border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 transition
-              p-5 h-full">
-      <div class="flex flex-col justify-between h-full">
-        <div>
-          <h3 class="text-xl font-semibold text-sky-200">Agendar una llamada</h3>
-          <p class="text-sm text-sky-100/80 mt-2">
-            Reserva 30 minutos con nuestro equipo.
+   <section id="demo" class="mx-auto max-w-7xl px-4 py-16">
+  <div class="glass rounded-2xl p-6 md:p-10">
+    <div class="grid gap-8 md:grid-cols-2 items-start">
+      <!-- Columna IZQUIERDA: dos CTAs apilados -->
+      <div class="flex flex-col gap-4">
+        <!-- CTA 1: Llamada de consulta -->
+        <div class="rounded-md border border-white/10 bg-white/5 p-6">
+          <h2 class="text-3xl font-bold tracking-tight text-white">
+            Agenda una llamada de consulta
+          </h2>
+          <p class="text-white/70 mt-2">
+            Te mostramos la voz en vivo, el flujo de citas y cómo conectamos tu inventario.
           </p>
+          <a
+            href="https://calendly.com/tworoadsvoice/30min" target="_blank" rel="noopener"
+            class="mt-4 inline-flex items-center px-4 py-2 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-200 transition"
+          >
+            Abrir Calendly →
+          </a>
         </div>
-        <span class="inline-flex items-center mt-4 text-sky-200 font-medium">
-          Abrir Calendly →
-        </span>
+
+        <!-- CTA 2: Formulario / Agente gratis -->
+        <div class="rounded-md border border-white/10 bg-white/5 p-6">
+          <h2 class="text-3xl font-bold tracking-tight text-white">
+            Completa un formulario rápido y obtén un Agente de prueba gratis por 7 días
+          </h2>
+          <p class="text-white/70 mt-2">
+            Llénalo ahora y te enviamos tu agente en menos de 24 horas.
+          </p>
+          <a
+            href="/pilot.html"
+            class="mt-4 inline-flex items-center px-4 py-2 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-200 transition"
+          >
+            Obtener Agente Gratis
+          </a>
+        </div>
+
+        <!-- Nota SMS -->
+        <p class="text-sm text-white/50 mt-1">
+          Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.
+        </p>
       </div>
-    </a>
 
-    <!-- Opción 2: Formulario / Agente gratis -->
-<div class="rounded-md border border-white/10 bg-white/5 p-5 h-full">
-  <div class="flex flex-col justify-between h-full">
-    <!-- Título accesible (oculto visualmente) -->
-    <h3 class="sr-only">Agente de prueba por 7 días</h3>
-
-    <!-- Hero text grande como el h2 principal -->
-    <p class="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-white">
-      <!-- Forzamos quiebres agradables en desktop sin romper móvil -->
-      <span class="block">Completa un formulario rápido</span>
-      <span class="block">y obtén tu agente listo</span>
-      <span class="block">para probar.</span>
-    </p>
-
-    <a href="/pilot.html"
-       class="mt-5 inline-flex items-center px-4 py-2 rounded-md bg-white text-slate-900
-              font-semibold hover:bg-slate-200 transition">
-      Obtener Agente Gratis
-    </a>
+      <!-- Columna DERECHA: Video -->
+      <div class="rounded-xl overflow-hidden border border-white/10 shadow">
+        <div class="aspect-video">
+          <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
 
 
   </div>
@@ -402,6 +425,7 @@
   </script>
 </body>
 </html>
+
 
 
 

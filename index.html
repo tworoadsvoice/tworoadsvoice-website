@@ -1,7 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <vapi-widget assistant-id="56c4c300-6c86-49a5-a6fb-06accbcaa318" public-key="087a5df8-029c-42b3-b424-87be6d20107e"></vapi-widget>
+  <vapi-widget
+  public-key="087a5df8-029c-42b3-b424-87be6d20107e"
+  assistant-id="56c4c300-6c86-49a5-a6fb-06accbcaa318"
+  mode="chat"
+  theme="dark"
+  base-bg-color="#000000"
+  accent-color="#14B8A6"
+  cta-button-color="#000000"
+  cta-button-text-color="#ffffff"
+  border-radius="large"
+  size="full"
+  position="bottom-right"
+  title="TALK WITH AI"
+  start-button-text="Start"
+  end-button-text="End Call"
+  chat-first-message="Hey, How can I help you today?"
+  chat-placeholder="Type your message..."
+  voice-show-transcript="true"
+  consent-required="true"
+  consent-title="Terms and conditions"
+  consent-content="By clicking "Agree," and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as otherwise described in our Terms of Service."
+  consent-storage-key="vapi_widget_consent"
+></vapi-widget>
+
+<script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
 
   <script
     src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js"
@@ -331,6 +355,7 @@
   </script>
 </body>
 </html>
+
 
 
 

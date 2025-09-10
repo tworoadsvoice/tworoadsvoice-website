@@ -254,7 +254,7 @@
       if (digits.length >= 8 && digits.length <= 15) return '+' + digits;
       return raw; // fallback
     }
-
+const getVal = id => (document.getElementById(id)?.value || '').trim();
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -270,18 +270,19 @@
       btn.disabled = true;
 
       const payload = {
-        name:   document.getElementById('name').value.trim(),
-        email:  document.getElementById('email').value.trim(),
-        phone:  toE164(document.getElementById('phone').value),
-        company:document.getElementById('company').value.trim(),
-        languages: document.getElementById('languages').value,
-        hours:  document.getElementById('hours').value,
-        volume: document.getElementById('volume').value,
-        goal:   document.getElementById('goal').value,
-        notes:  document.getElementById('notes').value.trim(),
-        consent: document.getElementById('consent').checked,
-        source: 'website-pilot-form'
-      };
+  name:   getVal('name'),
+  email:  getVal('email'),
+  phone:  toE164(getVal('phone')),
+  company:getVal('company'),
+  languages: getVal('languages'),
+  hours:  getVal('hours'),           // si no existe, queda ''
+  volume: getVal('volume'),
+  goal:   getVal('goal'),
+  notes:  getVal('notes'),
+  consent: document.getElementById('consent').checked,
+  source: 'website-pilot-form'
+};
+
 
       try{
         const res = await fetch(WEBHOOK_URL, {

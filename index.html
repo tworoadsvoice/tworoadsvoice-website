@@ -226,19 +226,16 @@
       </div>
 
       <!-- Derecha: Video -->
-      <div class="rounded-xl overflow-hidden border border-white/10">
-        <div class="aspect-video">
-          <iframe
-            class="w-full h-full"
-            src="https://www.youtube-nocookie.com/embed/XpKFVT35xcU?rel=0&modestbranding=1&playsinline=1"
-            title="Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
+      <div class="relative aspect-video rounded-xl overflow-hidden border border-white/10">
+  <iframe
+    class="absolute inset-0 h-full w-full"
+    src="https://www.youtube-nocookie.com/embed/XpKFVT35xcU?rel=0&modestbranding=1&playsinline=1"
+    title="Demo"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+</div>
+
     </div>
   </div>
 </section>
@@ -393,6 +390,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -120,38 +120,38 @@
 <body>
   <div class="wrap">
     <h1>Piloto gratuito de 7 días</h1>
-    <p class="muted">Completa el cuestionario y te respondemos en menos de 24 horas con tu agente listo para probar.</p>
+    <p class="muted">Complete the form and we'll respond within 24 hours with your agent ready to test. / Completa el cuestionario y te respondemos en menos de 24 horas con tu agente listo para probar.</p>
 
     <form id="pilotForm" class="card" novalidate>
       <div class="grid">
         <div class="col-6">
-          <label for="name">Nombre completo*</label>
+          <label for="name">Full name / Nombre completo*</label>
           <div class="field"><input id="name" name="name" type="text" required placeholder="Tu nombre" autocomplete="name"></div>
         </div>
 
         <div class="col-6">
-          <label for="email">Email de contacto*</label>
+          <label for="email">Email*</label>
           <div class="field"><input id="email" name="email" type="email" required placeholder="tucorreo@gmail.com" autocomplete="email"></div>
         </div>
 
         <div class="col-6">
-          <label for="phone">Teléfono*</label>
+          <label for="phone">Phone Number / Teléfono*</label>
           <div class="field"><input id="phone" name="phone" type="text" inputmode="tel" required placeholder="+1 305 123 4567" autocomplete="tel"></div>
           <!-- <div class="hint">Se normaliza a E.164 antes de enviar.</div> -->
         </div>
 
         <div class="col-6">
-          <label for="company">Empresa / Dealer</label>
+          <label for="company">Dealer / Consensionario</label>
           <div class="field"><input id="company" name="company" type="text" placeholder="Nombre de la empresa"></div>
         </div>
 
         <div class="col-6">
-          <label for="languages">Idioma(s) de atención*</label>
+          <label for="languages">Lenguage for the Agent / Idioma(s) de atención*</label>
           <div class="field">
             <select id="languages" name="languages" required>
               <option value="" disabled selected>Selecciona</option>
               <option>Español</option>
-              <option>Inglés</option>
+              <option>English</option>
               <option>Bilingüe (ES/EN)</option>
             </select>
           </div>
@@ -172,7 +172,7 @@
         </div> -->
 
         <div class="col-6">
-          <label for="volume">Volumen de llamadas estimado</label>
+          <label for="volume">Aproximate calls / Volumen de llamadas estimado</label>
           <div class="field">
             <select id="volume" name="volume">
               <option value="" selected>Selecciona</option>
@@ -185,27 +185,27 @@
         </div>
 
         <div class="col-6">
-          <label for="goal">Objetivo del piloto / notas</label>
+          <label for="goal">Pilot's objective - notes / Objetivo del piloto - notas</label>
           <div class="field">
             <select id="goal" name="goal">
-              <option value="" selected>Selecciona</option>
-              <option>Más citas</option>
-              <option>Recepción y filtrado</option>
-              <option>Soporte / posventa</option>
-              <option>Otro</option>
+              <option value="" selected>Select / Selecciona</option>
+              <option>More test drivings / Más citas</option>
+              <option>Reception and filtering / Recepción y filtrado</option>
+              <option>Support - after-sales / Soporte - posventa</option>
+              <option>Other / Otro</option>
             </select>
           </div>
         </div>
 
         <div class="col-12">
-          <label for="notes">Cuéntanos qué esperas del piloto en 7 días.</label>
-          <textarea id="notes" name="notes" placeholder="Contexto, casos de uso, script, integraciones…"></textarea>
+          <label for="notes">Tell us what you expect from the pilot in 7 days. / Cuéntanos qué esperas del piloto en 7 días.</label>
+          <textarea id="notes" name="notes" placeholder="Contexto, casos de uso, script, integraciones… \nContext, use cases, script, integrations…"></textarea>
         </div>
 
         <div class="col-12 consent">
           <input id="consent" name="consent" type="checkbox" required />
           <label for="consent" style="margin:0; cursor:pointer;">
-            Acepto el uso de mis datos para contactarme y crear el piloto de <strong>7 días</strong>.
+            I agree to the use of my data to contact me and create the <strong>7-day pilot.</strong>.
           </label>
         </div>
 
@@ -214,7 +214,7 @@
 
         <div class="col-12 actions">
           <button id="submitBtn" class="btn" type="submit">Enviar solicitud</button>
-          <span class="note">¿Prefieres una llamada para aclarar dudas? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Agenda con ventas</a>.</span>
+          <span class="note">Do you want to talk with sales? / ¿Prefieres una llamada para aclarar dudas? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Schedule a call / Agenda con ventas</a>.</span>
         </div>
       </div>
     </form>

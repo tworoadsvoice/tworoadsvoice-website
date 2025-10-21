@@ -74,9 +74,8 @@
           <div class="field"><input id="email" name="email" type="email" required placeholder="you@business.com" autocomplete="email"></div>
         </div>
         <div class="col-6">
-          <label id="l_phone" for="phone">Phone (US)*</label>
+          <label id="l_phone" for="phone">Phone*</label>
           <div class="field"><input id="phone" name="phone" type="text" inputmode="tel" required placeholder="+1 305 123 4567" autocomplete="tel"></div>
-          <div id="h_phone" class="hint">We normalize to E.164 (+1) for SMS.</div>
         </div>
 
         <!-- Business -->
@@ -130,18 +129,6 @@
             </select>
           </div>
         </div>
-        <div class="col-6">
-          <label id="l_channels" for="channels">Channel to test*</label>
-          <div class="field">
-            <select id="channels" name="channels" required>
-              <option value="" disabled selected>Select</option>
-              <option>Phone calls only</option>
-              <option>Web chat only</option>
-              <option>Both (calls + chat)</option>
-            </select>
-          </div>
-        </div>
-
         <!-- Objective & Tasks -->
         <div class="col-6">
           <label id="l_goal" for="goal">Primary goal*</label>
@@ -186,38 +173,8 @@
         </div>
 
         <!-- Booking / Confirmations -->
-        <div class="col-6">
-          <label id="l_bookingTool" for="bookingTool">Booking tool</label>
-          <div class="field">
-            <select id="bookingTool" name="bookingTool">
-              <option value="" selected>Select</option>
-              <option>Calendly</option>
-              <option>Google Calendar</option>
-              <option>None</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-6">
-          <label id="l_bookingLink" for="bookingLink">Booking link (if any)</label>
-          <div class="field"><input id="bookingLink" name="bookingLink" type="text" placeholder="https://calendly.com/yourlink"></div>
-        </div>
-        <div class="col-6">
-          <label id="l_confirmPref" for="confirmPref">Confirmation preference</label>
-          <div class="field">
-            <select id="confirmPref" name="confirmPref">
-              <option value="" selected>Select</option>
-              <option>SMS</option>
-              <option>Email</option>
-              <option>Both (SMS + Email)</option>
-              <option>None</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-6">
-          <label id="l_forwardNumber" for="forwardNumber">Forward-to number (optional)</label>
-          <div class="field"><input id="forwardNumber" name="forwardNumber" type="text" placeholder="+1 786 000 0000"></div>
-        </div>
+       
+      
 
         <!-- Personalization -->
         <div class="col-6">

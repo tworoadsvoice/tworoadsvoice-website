@@ -1,291 +1,264 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>7-Day Pilot — Two Roads Voice</title>
+  <title>Pilot - Two Roads Voice</title>
   <style>
     :root{ color-scheme: dark; }
+    select, option, optgroup{ background-color: var(--input); color: var(--ink); }
+    option:checked, option:hover{ background-color:#1a2635 !important; color: var(--ink); }
+
     :root{
       --bg:#0b0f14; --panel:#0f1620; --ink:#eaf2ff; --sub:#a9b6c7;
-      --brand:#4f79ff; --brand-700:#3a5de0; --stroke:#223041; --input:#121b26;
+      --brand:#4f79ff; --brand-700:#3a5de0; --ok:#31c48d; --err:#ff6b6b;
+      --stroke:#223041; --input:#121b26;
+      --radius:14px; --pad:18px; --gap:16px; --fieldH:48px;
+      --shadow:0 6px 24px rgba(0,0,0,.35), inset 0 0 0 1px var(--stroke);
+      --shadow-focus:0 8px 28px rgba(0,0,0,.45), inset 0 0 0 1px var(--brand);
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial;
-      background:var(--bg); color:var(--ink)
-    }
+    body{ margin:0; font-family:var(--font); background:var(--bg); color:var(--ink);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     .wrap{max-width:980px;margin-inline:auto;padding:24px 20px 60px}
     h1{font-size:clamp(26px,3vw,34px);margin:8px 0 6px}
-    .muted{color:var(--sub);margin:0 0 20px}
+    .muted{color:var(--sub);margin:0 0 22px}
 
-    .card{background:var(--panel);border-radius:20px;padding:24px;
-      box-shadow:0 6px 24px rgba(0,0,0,.35), inset 0 0 0 1px var(--stroke)}
-    .grid{ display:grid; gap:16px; grid-template-columns:repeat(12,1fr) }
-    .col-6{grid-column:span 6}.col-12{grid-column:span 12}
-    @media (max-width:760px){.col-6{grid-column:span 12}}
+    .card{background:var(--panel);border-radius:20px;padding:24px;box-shadow:var(--shadow)}
+    .grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(12,1fr); }
+    .col-3{grid-column:span 3} .col-4{grid-column:span 4} .col-6{grid-column:span 6} .col-8{grid-column:span 8} .col-12{grid-column:span 12}
+    @media (max-width: 760px){ .col-3,.col-4,.col-6,.col-8{grid-column:span 12} }
 
     label{display:block;font-size:14px;color:var(--sub);margin:2px 0 6px}
-    .field{
-      display:flex; align-items:center; min-height:48px;
-      background:var(--input); border:1px solid var(--stroke); border-radius:12px; padding:0 14px
-    }
-    .field:focus-within{ border-color:var(--brand);
-      box-shadow:0 8px 28px rgba(0,0,0,.45), inset 0 0 0 1px var(--brand) }
-    input,select,textarea{
-      width:100%; border:0; outline:0; background:transparent; color:var(--ink); font-size:15px; padding:12px 0
+    .field{ display:flex; align-items:center; min-height:var(--fieldH);
+      background:var(--input); border:1px solid var(--stroke); border-radius:12px;
+      padding:0 14px; transition:.18s border-color, .18s box-shadow, .18s background; }
+    .field:focus-within{border-color:var(--brand); box-shadow:var(--shadow-focus)}
+    input[type="text"], input[type="email"], select, textarea{
+      width:100%; border:0; outline:0; background:transparent; color:var(--ink); font-size:15px; padding:12px 0;
     }
     textarea{
-      min-height:120px; padding:14px; border-radius:12px; resize:vertical;
-      background:var(--input); border:1px solid var(--stroke)
+      min-height:130px; padding:14px; border-radius:12px; resize:vertical;
+      background:var(--input); border:1px solid var(--stroke);
     }
-    textarea:focus{ border-color:var(--brand);
-      box-shadow:0 8px 28px rgba(0,0,0,.45), inset 0 0 0 1px var(--brand) }
-    .hint{font-size:12px;color:var(--sub);margin-top:4px}
-
-    /* Select legible: control oscuro + menú claro */
-    select{
-      background-color: var(--input);
-      color: var(--ink);
-      border: 1px solid var(--stroke);
-      border-radius: 12px;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    select option, optgroup{
-      background-color:#ffffff !important;
-      color:#111111 !important;
-    }
-    select:invalid{ color: var(--sub) }
+    textarea:focus{border-color:var(--brand); box-shadow:var(--shadow-focus)}
+    .hint{font-size:12px; color:var(--sub); margin-top:4px}
+    .consent{ display:flex; align-items:center; gap:10px; color:var(--sub); font-size:14px;
+      background:var(--input); border:1px solid var(--stroke); border-radius:12px; padding:12px 14px; min-height:var(--fieldH); }
+    .consent input{width:18px;height:18px;margin:0; accent-color:var(--brand)}
+    .consent strong{color:var(--ink)}
+    .actions{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:6px}
+    .btn{ appearance:none; border:0; border-radius:12px; padding:12px 18px; font-weight:600; color:white; background:var(--brand); cursor:pointer;
+      box-shadow:0 8px 24px rgba(79,121,255,.25); transition:transform .06s ease, background .18s ease, opacity .18s ease; }
+    .btn:hover{background:var(--brand-700)} .btn:disabled{opacity:.6; cursor:not-allowed}
+    .link{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+    .note{font-size:13px; color:var(--sub)}
+    .groupTitle{font-size:13px; color:var(--sub); margin:26px 0 10px; text-transform:uppercase; letter-spacing:.06em}
 
     .rowcheck{ display:flex; flex-wrap:wrap; gap:10px }
-    .chk{ display:flex; align-items:center; gap:8px;
-      background:var(--input); border:1px solid var(--stroke); border-radius:10px; padding:10px 12px }
+    .chk{ display:flex; align-items:center; gap:8px; background:var(--input); border:1px solid var(--stroke); border-radius:10px; padding:10px 12px; }
     .chk input{ width:18px; height:18px; margin:0; accent-color:var(--brand) }
 
-    .consent{
-      display:flex; align-items:center; gap:10px; color:var(--sub); font-size:14px;
-      background:var(--input); border:1px solid var(--stroke); border-radius:12px; padding:12px 14px; min-height:48px
-    }
-    .consent input{ width:18px; height:18px; margin:0; accent-color:var(--brand) }
-
-    .actions{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:4px}
-    .btn{
-      appearance:none; border:0; border-radius:12px; padding:12px 18px; font-weight:600; color:white; background:var(--brand); cursor:pointer
-    }
-    .btn:hover{ background:var(--brand-700) }
-    .btn:disabled{ opacity:.6; cursor:not-allowed }
-    .link{color:#cfe0ff;text-decoration:underline;text-underline-offset:3px}
-    .note{font-size:13px;color:var(--sub)}
-
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-    .langbtn{border:1px solid var(--stroke);background:var(--input);color:var(--ink);padding:8px 10px;border-radius:10px;cursor:pointer}
-
-    .toast{
-      position:fixed; inset:auto 16px 16px auto; background:#0c151f; color:var(--ink);
-      padding:12px 14px; border-radius:12px; border:1px solid var(--stroke); display:none
-    }
+    .toast{ position:fixed; inset:auto 16px 16px auto; background:#0c151f; color:var(--ink);
+      padding:14px 16px; border-radius:12px; border:1px solid var(--stroke); display:none; box-shadow:0 10px 28px rgba(0,0,0,.4); }
+    .toast.ok{border-color:#184b3a} .toast.err{border-color:#5a1f1f}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <h1 id="ttl">7-Day Free Pilot</h1>
-      <button id="lang" class="langbtn" aria-label="Switch language">ES</button>
-    </div>
-    <p id="lead" class="muted">Fill the form and we’ll deliver your active pilot (US only): phone number + personalized page within 24 hours.</p>
+    <h1>Piloto gratuito de 7 días — Two Roads Voice</h1>
+    <p class="muted">Completa el formulario y en menos de 24 horas te entregamos tu agente activo (número de prueba y página personalizada) listo para usar.</p>
 
     <form id="pilotForm" class="card" novalidate>
       <div class="grid">
-        <!-- Contact -->
+        <!-- Contacto -->
         <div class="col-6">
-          <label id="l_name" for="name">Full name*</label>
-          <div class="field"><input id="name" name="name" type="text" required placeholder="Jane Doe" autocomplete="name"></div>
+          <label for="name">Nombre completo*</label>
+          <div class="field"><input id="name" name="name" type="text" required placeholder="Nombre y apellido" autocomplete="name"></div>
         </div>
         <div class="col-6">
-          <label id="l_email" for="email">Email*</label>
-          <div class="field"><input id="email" name="email" type="email" required placeholder="you@business.com" autocomplete="email"></div>
+          <label for="email">Email*</label>
+          <div class="field"><input id="email" name="email" type="email" required placeholder="tucorreo@empresa.com" autocomplete="email"></div>
         </div>
         <div class="col-6">
-          <label id="l_phone" for="phone">Phone (US)*</label>
+          <label for="phone">Teléfono de contacto (con código país)*</label>
           <div class="field"><input id="phone" name="phone" type="text" inputmode="tel" required placeholder="+1 305 123 4567" autocomplete="tel"></div>
-          <div id="h_phone" class="hint">We normalize to E.164 (+1) for SMS.</div>
+          <div class="hint">Normalizamos a formato internacional E.164 para SMS.</div>
         </div>
 
-        <!-- Business -->
+        <!-- Negocio -->
         <div class="col-6">
-          <label id="l_business" for="business">Business name*</label>
-          <div class="field"><input id="business" name="business" type="text" required placeholder="Clinic Smile / FitZone Gym"></div>
+          <label for="business">Nombre del negocio*</label>
+          <div class="field"><input id="business" name="business" type="text" required placeholder="Ej: Clínica Sonrisa / FitZone Gym"></div>
         </div>
         <div class="col-6">
-          <label id="l_industry" for="industry">Industry*</label>
+          <label for="industry">Industria*</label>
           <div class="field">
             <select id="industry" name="industry" required>
-              <option value="" disabled selected>Select</option>
-              <option>Healthcare / Clinic</option>
-              <option>Restaurant / Events</option>
-              <option>Automotive Services / Shop</option>
-              <option>Real Estate</option>
-              <option>Gym / Academy</option>
-              <option>Consulting / Agency</option>
-              <option>Retail / Store</option>
-              <option>Other</option>
+              <option value="" disabled selected>Selecciona</option>
+              <option>Salud / Clínica</option>
+              <option>Restaurante / Eventos</option>
+              <option>Servicios automotrices / Taller</option>
+              <option>Inmobiliaria</option>
+              <option>Gimnasio / Academia</option>
+              <option>Consultoría / Agencia</option>
+              <option>Retail / Tienda</option>
+              <option>Otro</option>
             </select>
           </div>
         </div>
         <div class="col-6">
-          <label id="l_website" for="website">Website or social (optional)</label>
-          <div class="field"><input id="website" name="website" type="text" placeholder="https://yoursite.com or @instagram"></div>
+          <label for="website">Sitio web o redes (opcional)</label>
+          <div class="field"><input id="website" name="website" type="text" placeholder="https://tusitio.com o @instagram"></div>
         </div>
         <div class="col-6">
-          <label id="l_state" for="state">State (US)</label>
-          <div class="field">
-            <select id="state" name="state">
-              <option value="" selected>Select</option>
-              <!-- options injected by JS -->
-            </select>
-          </div>
+          <label for="city">Ciudad/País (para tono y horarios)</label>
+          <div class="field"><input id="city" name="city" type="text" placeholder="Ciudad, País"></div>
+        </div>
+        <div class="col-6">
+          <label for="timezone">Zona horaria</label>
+          <div class="field"><input id="timezone" name="timezone" type="text" placeholder="Ej: America/New_York"></div>
         </div>
 
-        <!-- Language / Channel -->
+        <!-- Idioma y canal -->
         <div class="col-6">
-          <label id="l_languages" for="languages">Agent language(s)*</label>
+          <label for="languages">Idioma(s) del agente*</label>
           <div class="field">
             <select id="languages" name="languages" required>
-              <option value="" disabled selected>Select</option>
+              <option value="" disabled selected>Selecciona</option>
+              <option>Español</option>
               <option>English</option>
-              <option>Spanish</option>
-              <option>Bilingual (EN/ES)</option>
+              <option>Bilingüe (ES/EN)</option>
             </select>
           </div>
         </div>
         <div class="col-6">
-          <label id="l_channels" for="channels">Channel to test*</label>
+          <label for="channels">Canal a probar*</label>
           <div class="field">
             <select id="channels" name="channels" required>
-              <option value="" disabled selected>Select</option>
-              <option>Phone calls only</option>
-              <option>Web chat only</option>
-              <option>Both (calls + chat)</option>
+              <option value="" disabled selected>Selecciona</option>
+              <option>Solo llamadas telefónicas</option>
+              <option>Solo chat web</option>
+              <option>Ambos (llamadas + chat)</option>
             </select>
           </div>
         </div>
 
-        <!-- Objective & Tasks -->
+        <!-- Objetivo y tareas -->
         <div class="col-6">
-          <label id="l_goal" for="goal">Primary goal*</label>
+          <label for="goal">Objetivo principal del piloto*</label>
           <div class="field">
             <select id="goal" name="goal" required>
-              <option value="" disabled selected>Select</option>
-              <option>Bookings / Appointments</option>
-              <option>Reception & triage</option>
-              <option>Answer FAQs</option>
-              <option>After-sales support</option>
-              <option>Other</option>
+              <option value="" disabled selected>Selecciona</option>
+              <option>Reservas / Citas</option>
+              <option>Recepción y filtrado</option>
+              <option>Responder preguntas frecuentes</option>
+              <option>Soporte posventa</option>
+              <option>Otro</option>
             </select>
           </div>
         </div>
-
         <div class="col-12">
-          <div id="l_tasks" class="muted" style="font-size:13px; text-transform:uppercase; letter-spacing:.06em; margin-top:6px">Agent tasks (check all that apply)</div>
-          <div class="rowcheck" style="margin-top:6px">
-            <label class="chk"><input type="checkbox" id="t_book"  /> <span id="t1">Book appointments / tables</span></label>
-            <label class="chk"><input type="checkbox" id="t_faq"   /> <span id="t2">Answer FAQs (hours, address, price ranges)</span></label>
-            <label class="chk"><input type="checkbox" id="t_msg"   /> <span id="t3">Take messages & send SMS</span></label>
-            <label class="chk"><input type="checkbox" id="t_transfer" /> <span id="t4">Transfer calls to my team</span></label>
+          <div class="groupTitle">¿Qué tareas debe realizar el agente? (marca las que apliquen)</div>
+          <div class="rowcheck">
+            <label class="chk"><input type="checkbox" id="t_book"  /> <span>Reservar citas / mesas</span></label>
+            <label class="chk"><input type="checkbox" id="t_faq"   /> <span>Responder FAQs (horarios, dirección, precios orientativos)</span></label>
+            <label class="chk"><input type="checkbox" id="t_msg"   /> <span>Tomar mensajes y enviar SMS</span></label>
+            <label class="chk"><input type="checkbox" id="t_transfer" /> <span>Transferir llamadas a mi equipo</span></label>
           </div>
         </div>
 
-        <!-- Operations -->
+        <!-- Operación -->
         <div class="col-6">
-          <label id="l_hours" for="hours">Business hours (free text)</label>
-          <div class="field"><input id="hours" name="hours" type="text" placeholder="Mon–Fri 9–6pm, Sat 10–2pm"></div>
+          <label for="hours">Horario de atención (texto libre)</label>
+          <div class="field"><input id="hours" name="hours" type="text" placeholder="L–V 9–6pm, S 10–2pm"></div>
         </div>
         <div class="col-6">
-          <label id="l_volume" for="volume">Approx. daily calls</label>
+          <label for="volume">Volumen aproximado de llamadas</label>
           <div class="field">
             <select id="volume" name="volume">
-              <option value="" selected>Select</option>
-              <option>0–20/day</option>
-              <option>20–50/day</option>
-              <option>50–100/day</option>
-              <option>100+/day</option>
+              <option value="" selected>Selecciona</option>
+              <option>0–20/día</option>
+              <option>20–50/día</option>
+              <option>50–100/día</option>
+              <option>100+/día</option>
             </select>
           </div>
         </div>
 
-        <!-- Booking / Confirmations -->
+        <!-- Agenda / Confirmaciones -->
         <div class="col-6">
-          <label id="l_bookingTool" for="bookingTool">Booking tool</label>
+          <label for="bookingTool">Herramienta de agenda</label>
           <div class="field">
             <select id="bookingTool" name="bookingTool">
-              <option value="" selected>Select</option>
+              <option value="" selected>Selecciona</option>
               <option>Calendly</option>
               <option>Google Calendar</option>
-              <option>None</option>
-              <option>Other</option>
+              <option>Ninguna</option>
+              <option>Otra</option>
             </select>
           </div>
         </div>
         <div class="col-6">
-          <label id="l_bookingLink" for="bookingLink">Booking link (if any)</label>
-          <div class="field"><input id="bookingLink" name="bookingLink" type="text" placeholder="https://calendly.com/yourlink"></div>
+          <label for="bookingLink">Enlace de agenda (si aplica)</label>
+          <div class="field"><input id="bookingLink" name="bookingLink" type="text" placeholder="https://calendly.com/tuagenda"></div>
         </div>
         <div class="col-6">
-          <label id="l_confirmPref" for="confirmPref">Confirmation preference</label>
+          <label for="confirmPref">Confirmación de reservas</label>
           <div class="field">
             <select id="confirmPref" name="confirmPref">
-              <option value="" selected>Select</option>
+              <option value="" selected>Selecciona</option>
               <option>SMS</option>
               <option>Email</option>
-              <option>Both (SMS + Email)</option>
-              <option>None</option>
+              <option>Ambos (SMS + Email)</option>
+              <option>Ninguno</option>
             </select>
           </div>
         </div>
         <div class="col-6">
-          <label id="l_forwardNumber" for="forwardNumber">Forward-to number (optional)</label>
+          <label for="forwardNumber">Número para transferir llamadas (opcional)</label>
           <div class="field"><input id="forwardNumber" name="forwardNumber" type="text" placeholder="+1 786 000 0000"></div>
         </div>
 
-        <!-- Personalization -->
+        <!-- Personalización del agente -->
         <div class="col-6">
-          <label id="l_agentName" for="agentName">Agent name (optional)</label>
-          <div class="field"><input id="agentName" name="agentName" type="text" placeholder="Camila, Alex, Sofía…"></div>
+          <label for="agentName">Nombre preferido del agente (opcional)</label>
+          <div class="field"><input id="agentName" name="agentName" type="text" placeholder="Ej: Camila, Sofía, Alex"></div>
         </div>
         <div class="col-6">
-          <label id="l_agentTone" for="agentTone">Tone/personality</label>
+          <label for="agentTone">Tono/persona del agente</label>
           <div class="field">
             <select id="agentTone" name="agentTone">
-              <option value="" selected>Select</option>
-              <option>Warm & professional</option>
+              <option value="" selected>Selecciona</option>
+              <option>Amable y profesional</option>
               <option>Formal</option>
-              <option>Friendly</option>
-              <option>Calm & concise</option>
+              <option>Alegre y cercano</option>
+              <option>Sereno y conciso</option>
             </select>
           </div>
         </div>
 
-        <!-- Content -->
+        <!-- Contenido/FAQs -->
         <div class="col-12">
-          <label id="l_faqs" for="faqs">Key FAQs (address, hours, price ranges, policies)</label>
-          <textarea id="faqs" name="faqs" placeholder="Add 4–8 short Q&As the agent should know…"></textarea>
+          <label for="faqs">FAQs clave (precios orientativos, políticas, dirección, etc.)</label>
+          <textarea id="faqs" name="faqs" placeholder="Escribe 4–8 preguntas y respuestas breves que el agente debería saber…"></textarea>
         </div>
         <div class="col-12">
-          <label id="l_notes" for="notes">Notes / special instructions</label>
-          <textarea id="notes" name="notes" placeholder="Edge cases, scripts, desired integrations, restrictions…"></textarea>
+          <label for="notes">Notas / instrucciones especiales</label>
+          <textarea id="notes" name="notes" placeholder="Casos de uso, scripts específicos, integraciones deseadas, restricciones…"></textarea>
         </div>
         <div class="col-12">
-          <label id="l_success" for="success">What would make this pilot a success?</label>
-          <textarea id="success" name="success" placeholder='e.g., “at least 5 real bookings” or “<10% missed calls”.'></textarea>
+          <label for="success">¿Qué haría que este piloto sea un éxito para ti?</label>
+          <textarea id="success" name="success" placeholder="Ej: “al menos 5 reservas reales” o “reducir llamadas sin respuesta al 10%”."></textarea>
         </div>
 
-        <!-- Consent -->
+        <!-- Consentimiento -->
         <div class="col-12 consent">
           <input id="consent" name="consent" type="checkbox" required />
-          <label id="l_consent" for="consent" style="margin:0;cursor:pointer">
-            I agree to use my data to create and operate the <strong>7-day pilot</strong> and to receive related communications (email/SMS).
+          <label for="consent" style="margin:0; cursor:pointer;">
+            Acepto el uso de mis datos para crear y operar el <strong>piloto de 7 días</strong>, y recibir comunicaciones relacionadas (email/SMS).
           </label>
         </div>
 
@@ -293,8 +266,8 @@
         <input type="text" id="hp" name="hp" autocomplete="off" style="display:none">
 
         <div class="col-12 actions">
-          <button id="submitBtn" class="btn" type="submit">Submit</button>
-          <span id="sales" class="note">Prefer to talk to sales? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Schedule a call</a>.</span>
+          <button id="submitBtn" class="btn" type="submit">Enviar solicitud</button>
+          <span class="note">¿Prefieres hablar con ventas? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Agenda una llamada</a>.</span>
         </div>
       </div>
     </form>
@@ -303,237 +276,117 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
-    // ---------- i18n: labels & system texts ----------
-    const i18n = {
-      en:{
-        ttl:"7-Day Free Pilot",
-        lead:"Fill the form and we’ll deliver your active pilot (US only): phone number + personalized page within 24 hours.",
-        name:"Full name*", email:"Email*", phone:"Phone (US)*", phoneHint:"We normalize to E.164 (+1) for SMS.",
-        business:"Business name*", industry:"Industry*", website:"Website or social (optional)", state:"State (US)",
-        languages:"Agent language(s)*", channels:"Channel to test*", goal:"Primary goal*",
-        tasksLbl:"Agent tasks (check all that apply)",
-        t1:"Book appointments / tables", t2:"Answer FAQs (hours, address, price ranges)", t3:"Take messages & send SMS", t4:"Transfer calls to my team",
-        hours:"Business hours (free text)", volume:"Approx. daily calls",
-        bookingTool:"Booking tool", bookingLink:"Booking link (if any)", confirmPref:"Confirmation preference", forwardNumber:"Forward-to number (optional)",
-        agentName:"Agent name (optional)", agentTone:"Tone/personality",
-        faqs:"Key FAQs (address, hours, price ranges, policies)", notes:"Notes / special instructions", success:"What would make this pilot a success?",
-        consent:"I agree to use my data to create and operate the 7-day pilot and to receive related communications (email/SMS).",
-        submit:"Submit", sales:'Prefer to talk to sales? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Schedule a call</a>.',
-        toastOk:"Request sent! We’ll get back within 24h.", toastErr:"Couldn’t send. Please try again.", toastCopy:"Data copied to clipboard (manual mode).",
-        fixFields:"Please check required fields.",
-        placeholders:{
-          name:"Jane Doe",
-          email:"you@business.com",
-          phone:"+1 305 123 4567",
-          business:"Clinic Smile / FitZone Gym",
-          website:"https://yoursite.com or @instagram",
-          hours:"Mon–Fri 9–6pm, Sat 10–2pm",
-          bookingLink:"https://calendly.com/yourlink",
-          forwardNumber:"+1 786 000 0000",
-          faqs:"Add 4–8 short Q&As the agent should know…",
-          notes:"Edge cases, scripts, desired integrations, restrictions…",
-          success:'e.g., “at least 5 real bookings” or “<10% missed calls”.'
-        }
-      },
-      es:{
-        ttl:"Piloto gratuito de 7 días",
-        lead:"Completa el formulario y te entregamos tu piloto activo (solo EE. UU.): número de prueba + página personalizada en menos de 24 horas.",
-        name:"Nombre completo*", email:"Email*", phone:"Teléfono (EE. UU.)*", phoneHint:"Normalizamos a E.164 (+1) para SMS.",
-        business:"Nombre del negocio*", industry:"Industria*", website:"Sitio web o red social (opcional)", state:"Estado (EE. UU.)",
-        languages:"Idioma(s) del agente*", channels:"Canal a probar*", goal:"Objetivo principal*",
-        tasksLbl:"Tareas del agente (marca las que apliquen)",
-        t1:"Reservar citas / mesas", t2:"Responder FAQs (horarios, dirección, rangos de precios)", t3:"Tomar mensajes y enviar SMS", t4:"Transferir llamadas a mi equipo",
-        hours:"Horario de atención (texto libre)", volume:"Llamadas diarias aprox.",
-        bookingTool:"Herramienta de agenda", bookingLink:"Enlace de agenda (si aplica)", confirmPref:"Preferencia de confirmación", forwardNumber:"Número para transferir (opcional)",
-        agentName:"Nombre del agente (opcional)", agentTone:"Tono / personalidad",
-        faqs:"FAQs clave (dirección, horarios, rangos de precios, políticas)", notes:"Notas / instrucciones especiales", success:"¿Qué haría exitoso este piloto?",
-        consent:"Acepto el uso de mis datos para crear y operar el piloto de 7 días y recibir comunicaciones relacionadas (email/SMS).",
-        submit:"Enviar solicitud", sales:'¿Prefieres hablar con ventas? <a class="link" href="https://calendly.com/tworoadsvoice/30min">Agenda una llamada</a>.',
-        toastOk:"¡Solicitud enviada! Te contactaremos en menos de 24 h.", toastErr:"No se pudo enviar. Intenta nuevamente.", toastCopy:"Datos copiados al portapapeles (modo manual).",
-        fixFields:"Revisa los campos obligatorios.",
-        placeholders:{
-          name:"Jane Doe",
-          email:"tucorreo@empresa.com",
-          phone:"+1 305 123 4567",
-          business:"Clínica Sonrisa / FitZone Gym",
-          website:"https://tusitio.com o @instagram",
-          hours:"L–V 9–6pm, S 10–2pm",
-          bookingLink:"https://calendly.com/tuagenda",
-          forwardNumber:"+1 786 000 0000",
-          faqs:"Añade 4–8 preguntas y respuestas breves que deba saber…",
-          notes:"Casos límite, guiones, integraciones deseadas, restricciones…",
-          success:'Ej.: “al menos 5 reservas reales” o “<10% llamadas perdidas”.'
-        }
-      }
-    };
+    // ⚠️ Pega aquí tu webhook cuando lo tengas (o déjalo en blanco si lo procesas manualmente).
+    const WEBHOOK_URL = 'https://your-webhook-or-n8n-endpoint.example.com/webhook/pilot';
 
-    // Elements map
-    const els = {
-      ttl: 'ttl', lead:'lead',
-      l_name:'l_name', l_email:'l_email', l_phone:'l_phone', h_phone:'h_phone',
-      l_business:'l_business', l_industry:'l_industry', l_website:'l_website', l_state:'l_state',
-      l_languages:'l_languages', l_channels:'l_channels', l_goal:'l_goal',
-      l_tasks:'l_tasks', t1:'t1', t2:'t2', t3:'t3', t4:'t4',
-      l_hours:'l_hours', l_volume:'l_volume',
-      l_bookingTool:'l_bookingTool', l_bookingLink:'l_bookingLink', l_confirmPref:'l_confirmPref', l_forwardNumber:'l_forwardNumber',
-      l_agentName:'l_agentName', l_agentTone:'l_agentTone',
-      l_faqs:'l_faqs', l_notes:'l_notes', l_success:'l_success',
-      l_consent:'l_consent', submitBtn:'submitBtn', sales:'sales'
-    };
+    const form  = document.getElementById('pilotForm');
+    const btn   = document.getElementById('submitBtn');
+    const toast = document.getElementById('toast');
 
-    function $(id){ return document.getElementById(id) }
-
-    function setLang(L){
-      const d = i18n[L];
-      for (const k in els){
-        const el = $(els[k]);
-        if(!el) continue;
-        // some are HTML (consent & sales)
-        if (k==='l_consent' || k==='sales'){
-          el.innerHTML = d[k];
-        } else if (k==='submitBtn'){
-          el.textContent = d.submit;
-        } else {
-          el.textContent = d[k] || el.textContent;
-        }
-      }
-      // main title + lead
-      $('ttl').textContent = d.ttl;
-      $('lead').textContent = d.lead;
-
-      // placeholders
-      applyPlaceholders(L);
-
-      // lang button & html lang
-      $('lang').textContent = (L==='en' ? 'ES' : 'EN');
-      document.documentElement.lang = L;
+    function showToast(msg, ok=true){
+      toast.textContent = msg;
+      toast.className = 'toast ' + (ok ? 'ok' : 'err');
+      toast.style.display = 'block';
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=> toast.style.display='none', 4200);
     }
 
-    function applyPlaceholders(L){
-      const ph = i18n[L].placeholders;
-      $('name').placeholder = ph.name;
-      $('email').placeholder = ph.email;
-      $('phone').placeholder = ph.phone;
-      $('business').placeholder = ph.business;
-      $('website').placeholder = ph.website;
-      $('hours').placeholder = ph.hours;
-      $('bookingLink').placeholder = ph.bookingLink;
-      $('forwardNumber').placeholder = ph.forwardNumber;
-      $('faqs').placeholder = ph.faqs;
-      $('notes').placeholder = ph.notes;
-      $('success').placeholder = ph.success;
+    // Normaliza teléfonos a E.164 (cubre casos comunes)
+    function toE164(raw){
+      if (!raw) return '';
+      let p = (''+raw).trim();
+      if (p.startsWith('00')) p = '+' + p.slice(2);
+      if (p.startsWith('+')) return p.replace(/[^\d+]/g,'');
+      const digits = p.replace(/\D/g,'');
+      if (digits.length === 10) return '+1' + digits;           // US típico
+      if (digits.length >= 8 && digits.length <= 15) return '+' + digits;
+      return raw;
     }
 
-    // initial language
-    let lang = (navigator.language || 'en').startsWith('es') ? 'es' : 'en';
-    setLang(lang);
-    $('lang').addEventListener('click', ()=>{ lang = (lang==='en'?'es':'en'); setLang(lang); });
+    const val = id => (document.getElementById(id)?.value || '').trim();
+    const chk = id => !!document.getElementById(id)?.checked;
 
-    // Load US states into <select id="state">
-    (function loadStates(){
-      const states = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
-      const sel = $('state');
-      if (!sel) return;
-      const placeholder = document.createElement('option');
-      placeholder.value = ""; placeholder.selected = true; placeholder.textContent = (lang==='es'?'Selecciona':'Select');
-      sel.innerHTML = ""; sel.appendChild(placeholder);
-      states.forEach(s => {
-        const o = document.createElement('option');
-        o.value = s; o.textContent = s;
-        sel.appendChild(o);
-      });
-    })();
-
-    // ---------- Submit / webhook ----------
-    // Put your endpoint or leave empty for manual mode (copy to clipboard)
-    const WEBHOOK_URL = ''; // e.g., 'https://n8n.example.com/webhook/pilot'
-
-    const form  = $('pilotForm');
-    const btn   = $('submitBtn');
-    const toast = $('toast');
-
-    function showToast(msg){ toast.textContent = msg; toast.style.display='block'; clearTimeout(window.__t); window.__t=setTimeout(()=>toast.style.display='none', 4200); }
-    const val = id => ($(id)?.value || '').trim();
-    const chk = id => !!$(id)?.checked;
-
-    // Normalize US phones to +1 E.164 when possible
-    function toE164US(raw){
-      if(!raw) return '';
-      let p=(''+raw).trim().replace(/[^\d+]/g,'');
-      if(p.startsWith('+1') && p.length===12) return p;
-      const d=p.replace(/\D/g,'');
-      if(d.length===10) return '+1'+d;
-      if(d.length===11 && d.startsWith('1')) return '+'+d;
-      return raw; // fallback untouched
-    }
-
-    form.addEventListener('submit', async (e)=>{
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if($('hp').value) return; // honeypot
-      if(!form.checkValidity()){
-        showToast(i18n[lang].fixFields);
+      if (document.getElementById('hp').value) return; // honeypot
+
+      if (!form.checkValidity()){
+        showToast('Revisa los campos obligatorios.', false);
         form.reportValidity();
         return;
       }
+
       btn.disabled = true;
 
       const payload = {
-        lang,
-        // Contact
+        // Contacto
         name: val('name'),
         email: val('email'),
-        phone: toE164US(val('phone')),
+        phone: toE164(val('phone')),
 
-        // Business
+        // Negocio
         business: val('business'),
         industry: val('industry'),
         website: val('website'),
-        state: val('state'),
+        city: val('city'),
+        timezone: val('timezone'),
 
-        // Config
+        // Idioma / canal
         languages: val('languages'),
         channels: val('channels'),
-        goal: val('goal'),
-        tasks: { booking:chk('t_book'), faqs:chk('t_faq'), messaging:chk('t_msg'), transfer:chk('t_transfer') },
 
-        // Ops
+        // Objetivo y tareas
+        goal: val('goal'),
+        tasks: {
+          booking: chk('t_book'),
+          faqs: chk('t_faq'),
+          messaging: chk('t_msg'),
+          transfer: chk('t_transfer'),
+        },
+
+        // Operación
         hours: val('hours'),
         volume: val('volume'),
 
-        // Booking
+        // Agenda / confirmaciones
         bookingTool: val('bookingTool'),
         bookingLink: val('bookingLink'),
         confirmPref: val('confirmPref'),
-        forwardNumber: toE164US(val('forwardNumber')),
+        forwardNumber: toE164(val('forwardNumber')),
 
-        // Personalization
+        // Personalización agente
         agentName: val('agentName'),
         agentTone: val('agentTone'),
 
-        // Content
+        // Contenidos
         faqs: val('faqs'),
         notes: val('notes'),
         success: val('success'),
 
-        consent: $('consent').checked,
-        source: 'website-pilot-form-us'
+        consent: document.getElementById('consent').checked,
+        source: 'website-pilot-form'
       };
 
       try{
-        if(WEBHOOK_URL){
-          const res = await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-          if(!res.ok) throw new Error('HTTP '+res.status);
-          showToast(i18n[lang].toastOk);
+        if (WEBHOOK_URL && WEBHOOK_URL.startsWith('http')){
+          const res = await fetch(WEBHOOK_URL, {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(payload)
+          });
+          if(!res.ok) throw new Error('HTTP ' + res.status);
+          showToast('¡Solicitud enviada! Te contactaremos en menos de 24 h.', true);
           form.reset();
-        }else{
-          await navigator.clipboard.writeText(JSON.stringify(payload,null,2));
-          showToast(i18n[lang].toastCopy);
+        } else {
+          // Modo manual (sin webhook): copia el JSON al clipboard para pegarlo donde quieras
+          await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+          showToast('Sin webhook: datos copiados al portapapeles ✅', true);
         }
       }catch(err){
         console.error(err);
-        showToast(i18n[lang].toastErr);
+        showToast('No se pudo enviar. Intenta nuevamente.', false);
       }finally{
-        btn.disabled=false;
+        btn.disabled = false;
       }
     });
   </script>

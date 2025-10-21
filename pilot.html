@@ -106,16 +106,10 @@
           <label id="l_website" for="website">Website or social (optional)</label>
           <div class="field"><input id="website" name="website" type="text" placeholder="https://yoursite.com or @instagram"></div>
         </div>
-        <div class="col-6">
-          <label id="l_state" for="state">State (US)</label>
+         <div class="col-6">
+          <label id="l_address" for="address">Business address*</label>
           <div class="field">
-            <select id="state" name="state">
-              <option value="" selected>Select</option>
-              <script>
-                const __states = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
-                document.currentScript.insertAdjacentHTML('beforebegin', __states.map(s=>`<option>${s}</option>`).join(''));
-              </script>
-            </select>
+            <input id="address" name="address" type="text" required placeholder="Street, City, State, ZIP">
           </div>
         </div>
 

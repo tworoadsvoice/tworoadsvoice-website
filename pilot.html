@@ -69,7 +69,25 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1157811899618484');
-  fbq('track', 'PageView');
+  // Evento 1: cuando el usuario visita la página del piloto
+  fbq('trackCustom', 'ViewPilotPage');
+
+  // Evento 2: cuando hace click en el botón de enviar el formulario
+  document.addEventListener('DOMContentLoaded', function() {
+    const pilotForm = document.querySelector('form');
+    if (pilotForm) {
+      pilotForm.addEventListener('submit', function() {
+        fbq('trackCustom', 'SubmitPilotForm');
+      });
+    }
+
+    const submitBtn = document.querySelector('button[type="submit"], input[type="submit"]');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function() {
+        fbq('trackCustom', 'ClickSubmitPilot');
+      });
+    }
+  });
 </script>
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1157811899618484&ev=PageView&noscript=1"

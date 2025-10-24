@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Two Roads Voice</title>
+  <meta name="description" content="Panel del cliente: rendimiento del agente de voz, historial de llamadas y solicitudes de cambios.">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{--brand:#0ea5e9}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .glass{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.09)}
+  </style>
+</head>
+<body class="bg-slate-950 text-white">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Logomark -->
+        <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M6 40c5-10 11-16 18-20 7-4 12-6 18-8" stroke="url(#g1)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M6 8c6 2 11 4 18 8 7 4 13 10 18 20" stroke="url(#g2)" stroke-width="5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="g1" x1="6" x2="42" y1="40" y2="12"><stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+            <linearGradient id="g2" x1="6" x2="42" y1="8" y2="36"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="text-lg font-bold tracking-tight">Two Roads Voice</div>
+          <div id="clientName" class="text-xs text-white/60">Cliente: <span class="font-semibold">PLACEHOLDER_CLIENTE</span></div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span id="statusBadge" class="px-2.5 py-1 rounded-full text-xs bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+          🟢 Piloto activo — 7 días
+        </span>
+        <a href="/" class="text-white/70 hover:text-white text-sm border border-white/15 px-3 py-1.5 rounded-md">Cerrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8">
+    <!-- WELCOME & PRIMARY ACTION -->
+    <section class="mb-8 grid gap-4 lg:grid-cols-3">
+      <div class="lg:col-span-2 glass rounded-2xl p-6">
+        <h1 class="text-2xl font-extrabold">Bienvenido, <span id="clientShort">PLACEHOLDER_CLIENTE</span></h1>
+        <p class="text-white/70 mt-2">
+          Tu agente de voz está operativo. Aquí puedes ver resultados, escuchar llamadas y
+          <span class="font-semibold">solicitar ajustes</span> para que responda exactamente como quieres.
+        </p>
+        <div class="mt-4 flex gap-3">
+          <a href="#request" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-semibold">Solicitar ajuste del agente</a>
+          <a href="#calls" class="px-4 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 font-semibold">Ver llamadas</a>
+        </div>
+        <div class="mt-3 text-sm text-white/50">Número del agente: <span class="text-white/80 font-medium">PLACEHOLDER_PHONE</span></div>
+      </div>
+
+      <div class="glass rounded-2xl p-6">
+        <h3 class="font-semibold">Resumen rápido (últimos 7 días)</h3>
+        <ul class="mt-3 space-y-2 text-white/80">
+          <li>📞 Llamadas atendidas: <span id="m_calls" class="font-bold">—</span></li>
+          <li>📅 Citas agendadas: <span id="m_bookings" class="font-bold">—</span></li>
+          <li>💬 SMS enviados: <span id="m_sms" class="font-bold">—</span></li>
+          <li>⏱️ Resp. promedio: <span id="m_rt" class="font-bold">—</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- METRICS CARDS -->
+    <section class="grid md:grid-cols-4 gap-4">
+      <div class="glass rounded-xl p-5">
+        <div class="text-white/60 text-sm">Llamadas atendidas</div>
+        <div id="k_calls" class="text-3xl font-extrabold mt-1">—</div>
+      </div>
+      <div class="glass rounded-xl p-5">
+        <div class="text-white/60 text-sm">Citas agendadas</div>
+        <div id="k_book" class="text-3xl font-extrabold mt-1">—</div>
+      </div>
+      <div class="glass rounded-xl p-5">
+        <div class="text-white/60 text-sm">Mensajes SMS</div>
+        <div id="k_sms" class="text-3xl font-extrabold mt-1">—</div>
+      </div>
+      <div class="glass rounded-xl p-5">
+        <div class="text-white/60 text-sm">Disponibilidad</div>
+        <div class="text-3xl font-extrabold mt-1">24/7</div>
+        <div class="text-xs text-white/60">Bilingüe ES/EN</div>
+      </div>
+    </section>
+
+    <!-- CHART -->
+    <section class="mt-8 grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 glass rounded-2xl p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-lg">Actividad diaria</h3>
+          <span class="text-xs text-white/50">Últimos 7 días</span>
+        </div>
+        <canvas id="callsChart" class="mt-4 h-56"></canvas>
+      </div>
+
+      <div class="glass rounded-2xl p-6">
+        <h3 class="font-bold text-lg">Estado del piloto</h3>
+        <ul class="mt-3 text-white/80 text-sm space-y-2">
+          <li>Inicio: <span id="pilotStart" class="text-white/60">PLACEHOLDER_START</span></li>
+          <li>Fin: <span id="pilotEnd" class="text-white/60">PLACEHOLDER_END</span></li>
+          <li>Días restantes: <span id="daysLeft" class="font-semibold">—</span></li>
+        </ul>
+        <div class="mt-4">
+          <a href="#plans" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-semibold">Elegir plan</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALLS TABLE -->
+    <section id="calls" class="mt-10">
+      <h2 class="text-2xl font-bold">Llamadas recientes</h2>
+      <div class="glass rounded-2xl mt-4 overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-white/5 text-white/70">
+            <tr>
+              <th class="text-left px-4 py-3">Fecha</th>
+              <th class="text-left px-4 py-3">Hora</th>
+              <th class="text-left px-4 py-3">Cliente</th>
+              <th class="text-left px-4 py-3">Resultado</th>
+              <th class="text-left px-4 py-3">Audio</th>
+            </tr>
+          </thead>
+          <tbody id="callsBody"></tbody>
+        </table>
+      </div>
+      <div class="text-white/50 text-xs mt-2">* Audios de ejemplo. Puedes reemplazarlos por enlaces reales (Drive/S3/Vapi).</div>
+    </section>
+
+    <!-- REQUEST CHANGES -->
+    <section id="request" class="mt-12 grid lg:grid-cols-2 gap-6">
+      <div class="glass rounded-2xl p-6">
+        <h2 class="text-2xl font-bold">Solicitar cambios al agente</h2>
+        <p class="text-white/70 mt-2">Describe qué te gustaría ajustar. Aplicamos cambios en menos de 24 horas.</p>
+
+        <form id="reqForm" class="mt-4 space-y-3" novalidate>
+          <div>
+            <label class="text-sm text-white/70">Nombre de contacto</label>
+            <input id="c_name" type="text" required placeholder="Tu nombre"
+              class="w-full mt-1 bg-slate-900 border border-white/10 rounded-lg px-3 py-2">
+          </div>
+          <div>
+            <label class="text-sm text-white/70">Email</label>
+            <input id="c_email" type="email" required placeholder="tucorreo@empresa.com"
+              class="w-full mt-1 bg-slate-900 border border-white/10 rounded-lg px-3 py-2">
+          </div>
+          <div>
+            <label class="text-sm text-white/70">¿Qué quieres cambiar?</label>
+            <div class="grid grid-cols-2 gap-2 mt-1 text-sm">
+              <label class="flex items-center gap-2">
+                <input id="opt_saludo" type="checkbox" class="accent-sky-500"> Saludo
+              </label>
+              <label class="flex items-center gap-2">
+                <input id="opt_faq" type="checkbox" class="accent-sky-500"> Nueva respuesta/FAQ
+              </label>
+              <label class="flex items-center gap-2">
+                <input id="opt_horario" type="checkbox" class="accent-sky-500"> Horario/Ubicación
+              </label>
+              <label class="flex items-center gap-2">
+                <input id="opt_otro" type="checkbox" class="accent-sky-500"> Otro
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="text-sm text-white/70">Detalles</label>
+            <textarea id="c_notes" rows="6" required placeholder="Ej.: Cambiar saludo a: “Hola, gracias por llamar a …”. Agregar respuesta sobre precios/estacionamiento, etc."
+              class="w-full mt-1 bg-slate-900 border border-white/10 rounded-lg px-3 py-2"></textarea>
+          </div>
+
+          <!-- Honeypot -->
+          <input id="hp" type="text" autocomplete="off" style="display:none">
+
+          <button id="sendBtn" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-semibold">Enviar solicitud</button>
+          <div id="toast" class="hidden text-sm mt-2"></div>
+        </form>
+      </div>
+
+      <!-- PLANS -->
+      <div id="plans" class="glass rounded-2xl p-6">
+        <h2 class="text-2xl font-bold">Continuar después del piloto</h2>
+        <p class="text-white/70 mt-2">Elige un plan. Cambios incluidos y soporte prioritario.</p>
+
+        <div class="mt-4 grid gap-3">
+          <div class="rounded-xl border border-white/10 p-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-semibold">Starter</div>
+                <div class="text-white/60 text-sm">1 línea · Recordatorios SMS · QA mensual</div>
+              </div>
+              <div class="text-right">
+                <div class="text-2xl font-extrabold">$497</div>
+                <div class="text-xs text-white/60">/mes</div>
+              </div>
+            </div>
+            <a href="mailto:tworoadsvoice@gmail.com?subject=Plan%20Starter"
+               class="inline-block mt-3 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 text-sm">Hablar con ventas</a>
+          </div>
+
+          <div class="rounded-xl border border-sky-500/40 p-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-semibold">Pro</div>
+                <div class="text-white/60 text-sm">2–3 líneas · 24/7 · Integración CRM</div>
+              </div>
+              <div class="text-right">
+                <div class="text-2xl font-extrabold">$997</div>
+                <div class="text-xs text-white/60">/mes</div>
+              </div>
+            </div>
+            <a href="mailto:tworoadsvoice@gmail.com?subject=Plan%20Pro"
+               class="inline-block mt-3 px-3 py-1.5 rounded-md bg-sky-500 hover:bg-sky-400 text-sm font-semibold">Quiero este plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 mt-12">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-white/60">
+      © <span id="y"></span> Two Roads Voice · Soporte: <a class="hover:text-white" href="mailto:tworoadsvoice@gmail.com">tworoadsvoice@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    // ========= CONFIG DEL CLIENTE (RÁPIDO DE EDITAR) =========
+    const CLIENT = {
+      name: "PLACEHOLDER_CLIENTE",
+      phone: "PLACEHOLDER_PHONE",
+      pilotStart: "2025-10-26", // YYYY-MM-DD
+      pilotEnd:   "2025-11-02",
+      metrics: { calls: 47, bookings: 11, sms: 19, responseTimeSec: 2.4 },
+      graph: { labels: ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"], data: [6,9,7,8,11,4,2] },
+      // Llamadas de ejemplo. Reemplaza por datos reales cuando los tengas.
+      calls: [
+        {date:"2025-10-25",time:"10:12",name:"+1 305 555 0112",result:"Agendada", audio:"https://filesamples.com/samples/audio/mp3/sample3.mp3"},
+        {date:"2025-10-25",time:"09:40",name:"+1 786 555 1020",result:"Consulta", audio:"https://filesamples.com/samples/audio/mp3/sample2.mp3"},
+        {date:"2025-10-24",time:"18:20",name:"Spam detectado",result:"Filtrado", audio:"https://filesamples.com/samples/audio/mp3/sample1.mp3"},
+        {date:"2025-10-24",time:"16:05",name:"+1 954 555 9981",result:"Agendada", audio:"https://filesamples.com/samples/audio/mp3/sample3.mp3"},
+      ]
+    };
+
+    // ========= PINTAR CABECERA Y MÉTRICAS =========
+    document.getElementById("clientName").querySelector("span").textContent = CLIENT.name;
+    document.getElementById("clientShort").textContent = CLIENT.name;
+    document.querySelector("main .text-sm span.text-white\\/80")?.textContent = CLIENT.phone; // número del agente
+    document.getElementById("m_calls").textContent   = CLIENT.metrics.calls;
+    document.getElementById("m_bookings").textContent= CLIENT.metrics.bookings;
+    document.getElementById("m_sms").textContent     = CLIENT.metrics.sms;
+    document.getElementById("m_rt").textContent      = CLIENT.metrics.responseTimeSec + "s";
+    document.getElementById("k_calls").textContent   = CLIENT.metrics.calls;
+    document.getElementById("k_book").textContent    = CLIENT.metrics.bookings;
+    document.getElementById("k_sms").textContent     = CLIENT.metrics.sms;
+
+    // Estado del piloto
+    const dStart = new Date(CLIENT.pilotStart+"T00:00:00");
+    const dEnd   = new Date(CLIENT.pilotEnd+"T23:59:59");
+    const today  = new Date();
+    const daysLeft = Math.max(0, Math.ceil((dEnd - today)/(1000*60*60*24)));
+    document.getElementById("pilotStart").textContent = CLIENT.pilotStart;
+    document.getElementById("pilotEnd").textContent = CLIENT.pilotEnd;
+    document.getElementById("daysLeft").textContent = daysLeft;
+
+    // Cambiar badge según estado
+    const status = document.getElementById("statusBadge");
+    if (today > dEnd) {
+      status.textContent = "🔵 Piloto finalizado";
+      status.className = "px-2.5 py-1 rounded-full text-xs bg-blue-500/15 text-blue-300 border border-blue-500/30";
+    }
+
+    // ========= GRÁFICO =========
+    new Chart(document.getElementById('callsChart'), {
+      type: 'line',
+      data: {
+        labels: CLIENT.graph.labels,
+        datasets: [{
+          label: 'Llamadas',
+          data: CLIENT.graph.data,
+          borderColor: '#0ea5e9',
+          backgroundColor: 'rgba(14,165,233,.15)',
+          tension: .35,
+          fill: true
+        }]
+      },
+      options: {
+        plugins: { legend: { display:false } },
+        scales: { x:{ grid:{ color:'rgba(255,255,255,.06)'}}, y:{ grid:{ color:'rgba(255,255,255,.06)'}, ticks:{ stepSize:2, precision:0}}}
+      }
+    });
+
+    // ========= TABLA DE LLAMADAS =========
+    const tbody = document.getElementById('callsBody');
+    CLIENT.calls.forEach(c => {
+      const tr = document.createElement('tr');
+      tr.className = "border-t border-white/5 hover:bg-white/5";
+      tr.innerHTML = `
+        <td class="px-4 py-3">${c.date}</td>
+        <td class="px-4 py-3">${c.time}</td>
+        <td class="px-4 py-3">${c.name}</td>
+        <td class="px-4 py-3">${c.result}</td>
+        <td class="px-4 py-3">
+          <audio controls preload="none" class="w-44">
+            <source src="${c.audio}" type="audio/mpeg">Tu navegador no soporta audio.
+          </audio>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+
+    // ========= FORM: ENVIAR SOLICITUD (n8n) =========
+    const WEBHOOK_URL = "https://YOUR-N8N-DOMAIN/webhook/change-requests"; // <-- REEMPLAZA
+    const form = document.getElementById('reqForm');
+    const btn  = document.getElementById('sendBtn');
+    const toast= document.getElementById('toast');
+    const v = id => (document.getElementById(id)?.value || '').trim();
+
+    function showToast(msg, ok=true){
+      toast.textContent = msg;
+      toast.className = `mt-2 text-sm ${ok?'text-emerald-300':'text-rose-300'}`;
+      toast.classList.remove('hidden');
+      setTimeout(()=>toast.classList.add('hidden'), 4200);
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      if (document.getElementById('hp').value) return; // honeypot
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      btn.disabled = true;
+
+      const payload = {
+        client: CLIENT.name,
+        phone: CLIENT.phone,
+        contact_name: v('c_name'),
+        contact_email: v('c_email'),
+        change: {
+          saludo: document.getElementById('opt_saludo').checked,
+          faq: document.getElementById('opt_faq').checked,
+          horario: document.getElementById('opt_horario').checked,
+          otro: document.getElementById('opt_otro').checked,
+        },
+        notes: v('c_notes'),
+        source: 'client-dashboard'
+      };
+
+      try{
+        if (WEBHOOK_URL.includes('YOUR-N8N-DOMAIN')) {
+          // Modo demo: copia al portapapeles
+          await navigator.clipboard.writeText(JSON.stringify(payload,null,2));
+          showToast('Solicitud copiada (configura WEBHOOK_URL para enviar).');
+        } else {
+          const res = await fetch(WEBHOOK_URL, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(payload)
+          });
+          if(!res.ok) throw new Error('HTTP '+res.status);
+          showToast('Solicitud enviada. Te confirmamos por email.', true);
+          form.reset();
+        }
+      } catch(err){
+        console.error(err);
+        showToast('No se pudo enviar. Intenta nuevamente.', false);
+      } finally{
+        btn.disabled = false;
+      }
+    });
+
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

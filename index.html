@@ -81,22 +81,22 @@
       </a>
 
       <div class="hidden md:flex items-center gap-6">
-        <a href="#solutions" class="text-white/80 hover:text-white">Soluciones</a>
-        <a href="#features" class="text-white/80 hover:text-white">Funciones</a>
-        <a href="#faq" class="text-white/80 hover:text-white">FAQ</a>
+        <a id="navSolutions" href="#solutions" class="text-white/80 hover:text-white" data-i18n="nav_solutions">Soluciones</a>
+        <a id="navFeatures" href="#features" class="text-white/80 hover:text-white" data-i18n="nav_features">Funciones</a>
+        <a id="navFAQ" href="#faq" class="text-white/80 hover:text-white" data-i18n="nav_faq">FAQ</a>
         <button id="langBtn" class="px-3 py-1.5 rounded-md border border-white/15 text-sm hover:bg-white/5">EN</button>
-        <a href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium">Agendar demo</a>
+        <a id="navDemo" href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium" data-i18n="cta_demo">Agendar demo</a>
       </div>
 
       <button class="md:hidden px-3 py-2 rounded-md border border-white/15" onclick="document.getElementById('mnav').classList.toggle('hidden')">☰</button>
     </nav>
     <div id="mnav" class="md:hidden hidden px-4 pb-4 space-y-3">
-      <a href="#solutions" class="block text-white/90">Soluciones</a>
-      <a href="#features" class="block text-white/90">Funciones</a>
-      <a href="#faq" class="block text-white/90">FAQ</a>
+      <a href="#solutions" class="block text-white/90" data-i18n="nav_solutions">Soluciones</a>
+      <a href="#features" class="block text-white/90" data-i18n="nav_features">Funciones</a>
+      <a href="#faq" class="block text-white/90" data-i18n="nav_faq">FAQ</a>
       <div class="flex gap-3">
         <button id="langBtnM" class="px-3 py-1.5 rounded-md border border-white/15 text-sm">EN</button>
-        <a href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium">Agendar demo</a>
+        <a href="#demo" class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-400 font-medium" data-i18n="cta_demo">Agendar demo</a>
       </div>
     </div>
   </header>
@@ -107,20 +107,20 @@
     <div class="mx-auto max-w-7xl relative px-4 pt-16 pb-20 sm:pt-24 sm:pb-28">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 badge px-2.5 py-1 rounded-full text-xs text-white/80">
-          <span>IA de voz en tiempo real</span><span class="text-white/30">•</span><span>Bilingüe ES/EN</span>
+          <span data-i18n="badge_rt_voice">IA de voz en tiempo real</span><span class="text-white/30">•</span><span data-i18n="badge_bilingual">Bilingüe ES/EN</span>
         </div>
         <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold leading-tight">
-          Asistentes de voz para negocios:
-          <span class="text-sky-400">atienden, responden y reservan automáticamente.</span>
+          <span data-i18n="hero_title_prefix">Asistentes de voz para negocios:</span>
+          <span class="text-sky-400" data-i18n="hero_title_highlight">atienden, responden y reservan automáticamente.</span>
         </h1>
-        <p class="mt-5 text-lg text-white/80 max-w-2xl">
+        <p class="mt-5 text-lg text-white/80 max-w-2xl" data-i18n="hero_desc">
           Two Roads Voice convierte llamadas en citas y clientes. Sonido natural, respuestas precisas y recordatorios por SMS. Funciona para clínicas, restaurantes, talleres, inmobiliarias, gimnasios y más.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#demo" class="px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold">Agendar demo</a>
-          <a href="#demo" class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-md font-semibold border border-white/10">Probar 7 días gratis</a>
+          <a id="heroCtaDemo" href="#demo" class="px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold" data-i18n="cta_demo">Agendar demo</a>
+          <a id="heroCtaPilot" href="#demo" class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-md font-semibold border border-white/10" data-i18n="cta_pilot">Probar 7 días gratis</a>
         </div>
-        <div class="mt-6 text-sm text-white/60">
+        <div class="mt-6 text-sm text-white/60" data-i18n="hero_note">
           Onboarding en minutos: redirige tu número y comparte tu información básica. Nosotros hacemos el resto.
         </div>
       </div>
@@ -129,87 +129,87 @@
 
   <!-- SOLUTIONS by vertical -->
   <section id="solutions" class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-3xl font-bold">Soluciones por tipo de negocio</h2>
-    <p class="text-white/70 mt-2">Un mismo motor, flujos adaptados a cada industria.</p>
+    <h2 class="text-3xl font-bold" data-i18n="solutions_ttl">Soluciones por tipo de negocio</h2>
+    <p class="text-white/70 mt-2" data-i18n="solutions_sub">Un mismo motor, flujos adaptados a cada industria.</p>
     <div class="mt-10 grid md:grid-cols-3 gap-6">
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Salud y bienestar</h3>
-        <p class="text-white/70 mt-2">Agenda de consultas, recordatorios, políticas de no-show.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_health_ttl">Salud y bienestar</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_health_txt">Agenda de consultas, recordatorios, políticas de no-show.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Restaurantes & eventos</h3>
-        <p class="text-white/70 mt-2">Reservas, horarios, menús, dirección y confirmaciones por SMS.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_rest_ttl">Restaurantes & eventos</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_rest_txt">Reservas, horarios, menús, dirección y confirmaciones por SMS.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Servicios automotrices</h3>
-        <p class="text-white/70 mt-2">Talleres, lavado y concesionarios: citas de servicio y disponibilidad.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_auto_ttl">Servicios automotrices</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_auto_txt">Talleres, lavado y concesionarios: citas de servicio y disponibilidad.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Inmobiliarias</h3>
-        <p class="text-white/70 mt-2">Visitas, captación de interesados, envío de fichas por SMS.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_re_ttl">Inmobiliarias</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_re_txt">Visitas, captación de interesados, envío de fichas por SMS.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Gimnasios & academias</h3>
-        <p class="text-white/70 mt-2">Clases, membresías, horarios y pruebas gratuitas.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_gym_ttl">Gimnasios & academias</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_gym_txt">Clases, membresías, horarios y pruebas gratuitas.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Consultorías & agencias</h3>
-        <p class="text-white/70 mt-2">Calificación de leads y agendado con tu calendario.</p>
+        <h3 class="font-semibold text-lg" data-i18n="sol_agency_ttl">Consultorías & agencias</h3>
+        <p class="text-white/70 mt-2" data-i18n="sol_agency_txt">Calificación de leads y agendado con tu calendario.</p>
       </div>
     </div>
   </section>
 
   <!-- FEATURES -->
   <section id="features" class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-3xl font-bold">Lo que hace por ti</h2>
-    <p class="text-white/70 mt-2">Todo lo esencial para convertir llamadas en resultados.</p>
+    <h2 class="text-3xl font-bold" data-i18n="features_ttl">Lo que hace por ti</h2>
+    <p class="text-white/70 mt-2" data-i18n="features_sub">Todo lo esencial para convertir llamadas en resultados.</p>
 
     <div class="mt-10 grid md:grid-cols-3 gap-6">
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Bilingüe ES/EN</h3>
-        <p class="text-white/70 mt-2">Detecta y responde en el idioma del cliente.</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_bilingual_ttl">Bilingüe ES/EN</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_bilingual_txt">Detecta y responde en el idioma del cliente.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Reservas y citas</h3>
-        <p class="text-white/70 mt-2">Calendly/Google Calendar o tu agenda. Confirmaciones y recordatorios.</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_booking_ttl">Reservas y citas</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_booking_txt">Calendly/Google Calendar o tu agenda. Confirmaciones y recordatorios.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Respuestas precisas</h3>
-        <p class="text-white/70 mt-2">Horarios, dirección, precios orientativos, políticas y FAQs.</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_precise_ttl">Respuestas precisas</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_precise_txt">Horarios, dirección, precios orientativos, políticas y FAQs.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Integraciones simples</h3>
-        <p class="text-white/70 mt-2">Google Sheets, Airtable, HubSpot, WhatsApp/SMS.</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_integrations_ttl">Integraciones simples</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_integrations_txt">Google Sheets, Airtable, HubSpot, WhatsApp/SMS.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Voz natural</h3>
-        <p class="text-white/70 mt-2">Tono humano, pausas correctas y control de turnos (sin monólogos).</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_voice_ttl">Voz natural</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_voice_txt">Tono humano, pausas correctas y control de turnos (sin monólogos).</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold text-lg">Reportes</h3>
-        <p class="text-white/70 mt-2">Leads válidos, reservas, escuchas QA y métricas de conversión.</p>
+        <h3 class="font-semibold text-lg" data-i18n="f_reports_ttl">Reportes</h3>
+        <p class="text-white/70 mt-2" data-i18n="f_reports_txt">Leads válidos, reservas, escuchas QA y métricas de conversión.</p>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
   <section class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-3xl font-bold">Cómo funciona</h2>
+    <h2 class="text-3xl font-bold" data-i18n="how_ttl">Cómo funciona</h2>
     <div class="mt-8 grid md:grid-cols-3 gap-6">
       <div class="glass rounded-xl p-6">
         <div class="text-sky-400 font-bold">01</div>
-        <h3 class="font-semibold mt-2">Onboarding express</h3>
-        <p class="text-white/70 mt-1">Redirige tu número y compártenos información clave (servicios, horarios, ubicación).</p>
+        <h3 class="font-semibold mt-2" data-i18n="how_1_ttl">Onboarding express</h3>
+        <p class="text-white/70 mt-1" data-i18n="how_1_txt">Redirige tu número y compártenos información clave (servicios, horarios, ubicación).</p>
       </div>
       <div class="glass rounded-xl p-6">
         <div class="text-sky-400 font-bold">02</div>
-        <h3 class="font-semibold mt-2">Piloto 7 días</h3>
-        <p class="text-white/70 mt-1">Escuchas QA + métricas (llamadas atendidas, reservas, mensajes enviados).</p>
+        <h3 class="font-semibold mt-2" data-i18n="how_2_ttl">Piloto 7 días</h3>
+        <p class="text-white/70 mt-1" data-i18n="how_2_txt">Escuchas QA + métricas (llamadas atendidas, reservas, mensajes enviados).</p>
       </div>
       <div class="glass rounded-xl p-6">
         <div class="text-sky-400 font-bold">03</div>
-        <h3 class="font-semibold mt-2">Escala mensual</h3>
-        <p class="text-white/70 mt-1">Pasamos a plan Starter/Pro cuando cumplimos objetivos. Sin permanencias.</p>
+        <h3 class="font-semibold mt-2" data-i18n="how_3_ttl">Escala mensual</h3>
+        <p class="text-white/70 mt-1" data-i18n="how_3_txt">Pasamos a plan Starter/Pro cuando cumplimos objetivos. Sin permanencias.</p>
       </div>
     </div>
   </section>
@@ -220,35 +220,37 @@
       <div class="grid gap-8 lg:grid-cols-2 items-start">
         <div class="space-y-6">
           <div class="rounded-xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h2 class="text-3xl font-bold text-white">Agenda una llamada de consulta</h2>
-            <p class="text-white/70 mt-3">Te mostramos la voz en vivo y cómo se adapta a tu negocio.</p>
+            <h2 class="text-3xl font-bold text-white" data-i18n="demo_1_ttl">Agenda una llamada de consulta</h2>
+            <p class="text-white/70 mt-3" data-i18n="demo_1_txt">Te mostramos la voz en vivo y cómo se adapta a tu negocio.</p>
             <a href="https://calendly.com/tworoadsvoice/30min" target="_blank"
-               class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold text-white">
-              Agendar
-            </a>
+               class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold text-white"
+               data-i18n="cta_demo">Agendar</a>
           </div>
 
           <div class="rounded-xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h2 class="text-3xl font-bold text-white">Obtén un piloto gratis por 7 días</h2>
-            <p class="text-white/70 mt-3">Completa el formulario y activamos tu agente en menos de 24 horas.</p>
+            <h2 class="text-3xl font-bold text-white" data-i18n="demo_2_ttl">Obtén un piloto gratis por 7 días</h2>
+            <p class="text-white/70 mt-3" data-i18n="demo_2_txt">Completa el formulario y activamos tu agente en menos de 24 horas.</p>
             <a href="/pilot.html"
-               class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold text-white">
-              Empezar piloto
-            </a>
+               class="inline-flex items-center justify-center mt-5 px-5 py-3 bg-sky-500 hover:bg-sky-400 rounded-md font-semibold text-white"
+               data-i18n="cta_pilot_btn">Empezar piloto</a>
           </div>
 
-          <p class="text-white/50 text-sm">
+          <p class="text-white/50 text-sm" data-i18n-html="sms_notice">
             Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.
           </p>
         </div>
 
+        <!-- YouTube sin “sugeridos” externos -->
         <div class="embed-16by9 rounded-xl overflow-hidden border border-white/10">
-          <!-- Reemplaza el video por tu demo -->
-          <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/XpFKVT35xcU?start=1"
+          <iframe
+            id="demoVideo"
+            width="560"
+            height="315"
+            src="https://www.youtube-nocookie.com/embed/XpFKVT35xcU?start=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1"
             title="Two Roads Voice - Demo"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -256,23 +258,23 @@
 
   <!-- FAQ -->
   <section id="faq" class="mx-auto max-w-7xl px-4 py-16">
-    <h2 class="text-3xl font-bold">Preguntas frecuentes</h2>
+    <h2 class="text-3xl font-bold" data-i18n="faq_ttl">Preguntas frecuentes</h2>
     <div class="mt-8 grid md:grid-cols-2 gap-6">
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold">¿Para qué negocios funciona?</h3>
-        <p class="text-white/70 mt-2">Clínicas, restaurantes, talleres, inmobiliarias, gimnasios, academias, consultorías y más. Adaptamos el flujo a tu operación.</p>
+        <h3 class="font-semibold" data-i18n="faq_1_q">¿Para qué negocios funciona?</h3>
+        <p class="text-white/70 mt-2" data-i18n="faq_1_a">Clínicas, restaurantes, talleres, inmobiliarias, gimnasios, academias, consultorías y más. Adaptamos el flujo a tu operación.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold">¿Cómo agendan?</h3>
-        <p class="text-white/70 mt-2">Conectamos con tu Calendly o Google Calendar. También podemos usar tu agenda interna vía webhook.</p>
+        <h3 class="font-semibold" data-i18n="faq_2_q">¿Cómo agendan?</h3>
+        <p class="text-white/70 mt-2" data-i18n="faq_2_a">Conectamos con tu Calendly o Google Calendar. También podemos usar tu agenda interna vía webhook.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold">¿Qué tan natural suena?</h3>
-        <p class="text-white/70 mt-2">Voz clara y cálida, control de turnos y sin repeticiones. QA semanal y mejoras continuas.</p>
+        <h3 class="font-semibold" data-i18n="faq_3_q">¿Qué tan natural suena?</h3>
+        <p class="text-white/70 mt-2" data-i18n="faq_3_a">Voz clara y cálida, control de turnos y sin repeticiones. QA semanal y mejoras continuas.</p>
       </div>
       <div class="glass rounded-xl p-6">
-        <h3 class="font-semibold">¿Qué incluye el piloto?</h3>
-        <p class="text-white/70 mt-2">7 días, configuración básica, reservas y SMS, reportes de desempeño. Si te gusta, escalamos al plan mensual.</p>
+        <h3 class="font-semibold" data-i18n="faq_4_q">¿Qué incluye el piloto?</h3>
+        <p class="text-white/70 mt-2" data-i18n="faq_4_a">7 días, configuración básica, reservas y SMS, reportes de desempeño. Si te gusta, escalamos al plan mensual.</p>
       </div>
     </div>
   </section>
@@ -282,71 +284,168 @@
     <div class="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-2 gap-6 items-center">
       <div>
         <div class="font-bold text-lg">Two Roads Voice</div>
-        <p class="text-white/60 mt-2 text-sm">Asistentes de voz para negocios. Más reservas, menos fricción.</p>
+        <p class="text-white/60 mt-2 text-sm" data-i18n="footer_sub">Asistentes de voz para negocios. Más reservas, menos fricción.</p>
       </div>
       <div class="md:text-right">
         <a href="mailto:tworoadsvoice@gmail.com?subject=Quiero%20una%20demo&body=Hola%20Two%20Roads%20Voice,%0D%0A%0D%0ANecesito%20un%20agente%20para%20mi%20negocio.%0D%0A-%20Nombre:%0D%0A-%20Empresa:%0D%0A-%20Tel%C3%A9fono:%0D%0A%0D%0AGracias"
            class="text-white/80 hover:text-white">tworoadsvoice@gmail.com</a>
-        <div class="text-white/40 text-xs mt-2">© <span id="y"></span> · <a href="/privacy.html" class="hover:text-white/60">Política de Privacidad</a></div>
+        <div class="text-white/40 text-xs mt-2">© <span id="y"></span> · <a href="/privacy.html" class="hover:text-white/60" data-i18n="privacy">Política de Privacidad</a></div>
       </div>
     </div>
   </footer>
 
-  <!-- i18n simple (hero/nav/ctas) -->
+  <!-- i18n -->
   <script>
-    const t = {
-      en: {
-        heroTitle: "Voice AI for businesses:",
-        heroSpan: "answers, books and follows up automatically.",
-        cta1: "Book a demo",
-        cta2: "Start 7-day pilot",
-        navSolutions: "Solutions",
-        navFeatures: "Features",
-        navFAQ: "FAQ",
+    // ——— Diccionario EN/ES
+    const I18N = {
+      es:{
+        nav_solutions:"Soluciones", nav_features:"Funciones", nav_faq:"FAQ", cta_demo:"Agendar demo",
+        cta_pilot:"Probar 7 días gratis", cta_pilot_btn:"Empezar piloto",
+        badge_rt_voice:"IA de voz en tiempo real", badge_bilingual:"Bilingüe ES/EN",
+        hero_title_prefix:"Asistentes de voz para negocios:", hero_title_highlight:"atienden, responden y reservan automáticamente.",
+        hero_desc:"Two Roads Voice convierte llamadas en citas y clientes. Sonido natural, respuestas precisas y recordatorios por SMS. Funciona para clínicas, restaurantes, talleres, inmobiliarias, gimnasios y más.",
+        hero_note:"Onboarding en minutos: redirige tu número y comparte tu información básica. Nosotros hacemos el resto.",
+        solutions_ttl:"Soluciones por tipo de negocio", solutions_sub:"Un mismo motor, flujos adaptados a cada industria.",
+        sol_health_ttl:"Salud y bienestar", sol_health_txt:"Agenda de consultas, recordatorios, políticas de no-show.",
+        sol_rest_ttl:"Restaurantes & eventos", sol_rest_txt:"Reservas, horarios, menús, dirección y confirmaciones por SMS.",
+        sol_auto_ttl:"Servicios automotrices", sol_auto_txt:"Talleres, lavado y concesionarios: citas de servicio y disponibilidad.",
+        sol_re_ttl:"Inmobiliarias", sol_re_txt:"Visitas, captación de interesados, envío de fichas por SMS.",
+        sol_gym_ttl:"Gimnasios & academias", sol_gym_txt:"Clases, membresías, horarios y pruebas gratuitas.",
+        sol_agency_ttl:"Consultorías & agencias", sol_agency_txt:"Calificación de leads y agendado con tu calendario.",
+        features_ttl:"Lo que hace por ti", features_sub:"Todo lo esencial para convertir llamadas en resultados.",
+        f_bilingual_ttl:"Bilingüe ES/EN", f_bilingual_txt:"Detecta y responde en el idioma del cliente.",
+        f_booking_ttl:"Reservas y citas", f_booking_txt:"Calendly/Google Calendar o tu agenda. Confirmaciones y recordatorios.",
+        f_precise_ttl:"Respuestas precisas", f_precise_txt:"Horarios, dirección, precios orientativos, políticas y FAQs.",
+        f_integrations_ttl:"Integraciones simples", f_integrations_txt:"Google Sheets, Airtable, HubSpot, WhatsApp/SMS.",
+        f_voice_ttl:"Voz natural", f_voice_txt:"Tono humano, pausas correctas y control de turnos (sin monólogos).",
+        f_reports_ttl:"Reportes", f_reports_txt:"Leads válidos, reservas, escuchas QA y métricas de conversión.",
+        how_ttl:"Cómo funciona",
+        how_1_ttl:"Onboarding express", how_1_txt:"Redirige tu número y compártenos información clave (servicios, horarios, ubicación).",
+        how_2_ttl:"Piloto 7 días", how_2_txt:"Escuchas QA + métricas (llamadas atendidas, reservas, mensajes enviados).",
+        how_3_ttl:"Escala mensual", how_3_txt:"Pasamos a plan Starter/Pro cuando cumplimos objetivos. Sin permanencias.",
+        demo_1_ttl:"Agenda una llamada de consulta", demo_1_txt:"Te mostramos la voz en vivo y cómo se adapta a tu negocio.",
+        demo_2_ttl:"Obtén un piloto gratis por 7 días", demo_2_txt:"Completa el formulario y activamos tu agente en menos de 24 horas.",
+        sms_notice:"Al compartir tu teléfono aceptas recibir SMS de confirmación. Envía <strong>STOP</strong> para cancelar, <strong>HELP</strong> para ayuda.",
+        faq_ttl:"Preguntas frecuentes",
+        faq_1_q:"¿Para qué negocios funciona?", faq_1_a:"Clínicas, restaurantes, talleres, inmobiliarias, gimnasios, academias, consultorías y más. Adaptamos el flujo a tu operación.",
+        faq_2_q:"¿Cómo agendan?", faq_2_a:"Conectamos con tu Calendly o Google Calendar. También podemos usar tu agenda interna vía webhook.",
+        faq_3_q:"¿Qué tan natural suena?", faq_3_a:"Voz clara y cálida, control de turnos y sin repeticiones. QA semanal y mejoras continuas.",
+        faq_4_q:"¿Qué incluye el piloto?", faq_4_a:"7 días, configuración básica, reservas y SMS, reportes de desempeño. Si te gusta, escalamos al plan mensual.",
+        footer_sub:"Asistentes de voz para negocios. Más reservas, menos fricción.",
+        privacy:"Política de Privacidad",
+        // Vapi widget
+        vapi_title:"CHATEA CON IA",
+        vapi_start:"Iniciar",
+        vapi_end:"Terminar",
+        vapi_first:"Hola 👋 ¿cómo puedo ayudarte hoy?",
+        vapi_ph:"Escribe tu mensaje…",
+        vapi_consent_title:"Términos y consentimiento",
+        vapi_consent_txt:"Al hacer clic en Aceptar, consiento la grabación y uso de mis comunicaciones por terceros proveedores, según nuestros Términos de Servicio."
       },
-      es: {
-        heroTitle: "Asistentes de voz para negocios:",
-        heroSpan: "atienden, responden y reservan automáticamente.",
-        cta1: "Agendar demo",
-        cta2: "Probar 7 días gratis",
-        navSolutions: "Soluciones",
-        navFeatures: "Funciones",
-        navFAQ: "FAQ",
+      en:{
+        nav_solutions:"Solutions", nav_features:"Features", nav_faq:"FAQ", cta_demo:"Book a demo",
+        cta_pilot:"Start 7-day pilot", cta_pilot_btn:"Start pilot",
+        badge_rt_voice:"Real-time voice AI", badge_bilingual:"Bilingual EN/ES",
+        hero_title_prefix:"Voice AI for businesses:", hero_title_highlight:"answers, books and follows up automatically.",
+        hero_desc:"Two Roads Voice turns calls into bookings and customers. Natural voice, accurate answers and SMS reminders. Works for clinics, restaurants, auto services, real estate, gyms and more.",
+        hero_note:"Onboarding in minutes: forward your number and share basic info. We handle the rest.",
+        solutions_ttl:"Solutions by business type", solutions_sub:"One engine — flows tailored to each industry.",
+        sol_health_ttl:"Healthcare & wellness", sol_health_txt:"Appointment booking, reminders, no-show policies.",
+        sol_rest_ttl:"Restaurants & events", sol_rest_txt:"Reservations, hours, menus, address, SMS confirmations.",
+        sol_auto_ttl:"Automotive services", sol_auto_txt:"Shops, detailing and dealers: service slots and availability.",
+        sol_re_ttl:"Real estate", sol_re_txt:"Property tours, lead capture, SMS with listings.",
+        sol_gym_ttl:"Gyms & academies", sol_gym_txt:"Classes, memberships, schedules, free trials.",
+        sol_agency_ttl:"Consultancies & agencies", sol_agency_txt:"Lead qualification and calendar booking.",
+        features_ttl:"What it does for you", features_sub:"Everything you need to turn calls into results.",
+        f_bilingual_ttl:"Bilingual EN/ES", f_bilingual_txt:"Detects and replies in the customer’s language.",
+        f_booking_ttl:"Bookings & appointments", f_booking_txt:"Calendly/Google Calendar or your scheduler. Confirmations and reminders.",
+        f_precise_ttl:"Accurate answers", f_precise_txt:"Hours, address, price ranges, policies and FAQs.",
+        f_integrations_ttl:"Simple integrations", f_integrations_txt:"Google Sheets, Airtable, HubSpot, WhatsApp/SMS.",
+        f_voice_ttl:"Human-like voice", f_voice_txt:"Natural tone, proper turn-taking, no monologues.",
+        f_reports_ttl:"Reports", f_reports_txt:"Valid leads, bookings, QA listens and conversion metrics.",
+        how_ttl:"How it works",
+        how_1_ttl:"Express onboarding", how_1_txt:"Forward your number and share key info (services, hours, location).",
+        how_2_ttl:"7-day pilot", how_2_txt:"QA listens + metrics (answered calls, bookings, SMS messages).",
+        how_3_ttl:"Scale monthly", how_3_txt:"Move to Starter/Pro once we hit goals. No lock-ins.",
+        demo_1_ttl:"Book a consultation call", demo_1_txt:"We demo the voice live and how it adapts to your business.",
+        demo_2_ttl:"Get a 7-day free pilot", demo_2_txt:"Fill the form and we activate your agent in under 24 hours.",
+        sms_notice:"By sharing your phone you agree to receive confirmation SMS. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help.",
+        faq_ttl:"Frequently asked questions",
+        faq_1_q:"Which businesses does it work for?", faq_1_a:"Clinics, restaurants, shops, real estate, gyms, academies, consultancies and more. We tailor the flow.",
+        faq_2_q:"How do you book?", faq_2_a:"We connect to Calendly or Google Calendar. Can use your in-house scheduler via webhook.",
+        faq_3_q:"How natural does it sound?", faq_3_a:"Clear, warm voice with turn-taking and no repetition. Weekly QA and constant improvements.",
+        faq_4_q:"What’s included in the pilot?", faq_4_a:"7 days, basic setup, bookings + SMS, performance reports. If you like it, move to monthly.",
+        footer_sub:"Voice AI for businesses. More bookings, less friction.",
+        privacy:"Privacy Policy",
+        // Vapi widget
+        vapi_title:"CHAT WITH AI",
+        vapi_start:"Start",
+        vapi_end:"End Call",
+        vapi_first:"Hi 👋 How can I help you today?",
+        vapi_ph:"Type your message…",
+        vapi_consent_title:"Terms & consent",
+        vapi_consent_txt:"By clicking Agree, I consent to recording and use of my communications by third-party providers, per our Terms of Service."
       }
     };
 
-    const y = document.getElementById('y'); y.textContent = new Date().getFullYear();
-    const langBtn = document.getElementById('langBtn');
-    const langBtnM = document.getElementById('langBtnM');
-    const el = {
-      title: document.querySelector('h1'),
-      titleSpan: document.querySelector('h1 span'),
-      cta1: document.querySelector('a[href="#demo"].px-5.py-3.bg-sky-500'),
-      cta2: document.querySelector('a[href="#demo"].px-5.py-3.bg-white\\/5'),
-      navSolutions: document.querySelector('a[href="#solutions"]'),
-      navFeatures: document.querySelector('a[href="#features"]'),
-      navFAQ: document.querySelector('a[href="#faq"]'),
-    };
+    // ——— Helpers para aplicar i18n en elementos y en el widget Vapi
+    function applyI18N(lang){
+      const dict = I18N[lang];
 
-    function setLang(l){
-      const d = t[l];
-      el.title.childNodes[0].nodeValue = d.heroTitle + " ";
-      el.titleSpan.textContent = d.heroSpan;
-      el.cta1.textContent = d.cta1;
-      el.cta2.textContent = d.cta2;
-      el.navSolutions.textContent = d.navSolutions;
-      el.navFeatures.textContent = d.navFeatures;
-      el.navFAQ.textContent = d.navFAQ;
-      langBtn.textContent = l === 'es' ? 'EN' : 'ES';
-      if(langBtnM) langBtnM.textContent = l === 'es' ? 'EN' : 'ES';
-      document.documentElement.lang = l;
+      // Textos simples
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const k = el.getAttribute("data-i18n");
+        if(dict[k]) el.textContent = dict[k];
+      });
+
+      // Textos con HTML interno (ej. <strong>)
+      document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+        const k = el.getAttribute("data-i18n-html");
+        if(dict[k]) el.innerHTML = dict[k];
+      });
+
+      // Placeholders (si los tuvieras, ej. inputs) -> ejemplo:
+      document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+        const k = el.getAttribute("data-i18n-ph");
+        if(dict[k]) el.setAttribute("placeholder", dict[k]);
+      });
+
+      // Botones de idioma
+      const langBtn = document.getElementById("langBtn");
+      const langBtnM = document.getElementById("langBtnM");
+      if(langBtn)  langBtn.textContent  = (lang === "es" ? "EN" : "ES");
+      if(langBtnM) langBtnM.textContent = (lang === "es" ? "EN" : "ES");
+
+      // Atributo lang HTML
+      document.documentElement.lang = lang;
+
+      // VAPI widget: actualizar atributos visibles
+      const widget = document.querySelector("vapi-widget");
+      if(widget){
+        widget.setAttribute("title", dict.vapi_title);
+        widget.setAttribute("start-button-text", dict.vapi_start);
+        widget.setAttribute("end-button-text", dict.vapi_end);
+        widget.setAttribute("chat-first-message", dict.vapi_first);
+        widget.setAttribute("chat-placeholder", dict.vapi_ph);
+        widget.setAttribute("consent-title", dict.vapi_consent_title);
+        widget.setAttribute("consent-content", dict.vapi_consent_txt);
+      }
     }
 
-    let current = 'es'; setLang(current);
-    function toggleLang(){ current = current === 'es' ? 'en' : 'es'; setLang(current); }
-    langBtn.addEventListener('click', toggleLang);
-    if(langBtnM) langBtnM.addEventListener('click', toggleLang);
+    // ——— Init + toggles
+    const y = document.getElementById('y'); y.textContent = new Date().getFullYear();
+    let currentLang = (navigator.language||"es").toLowerCase().startsWith("en") ? "en" : "es";
+    applyI18N(currentLang);
+
+    function toggleLang(){
+      currentLang = (currentLang === "es" ? "en" : "es");
+      applyI18N(currentLang);
+    }
+    document.getElementById("langBtn")?.addEventListener("click", toggleLang, {passive:true});
+    document.getElementById("langBtnM")?.addEventListener("click", toggleLang, {passive:true});
   </script>
 </body>
+
 </html>
+
 
